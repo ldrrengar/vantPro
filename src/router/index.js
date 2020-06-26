@@ -1,32 +1,41 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import index from '@/view/index/index'
+import { getLocalStorage } from '@/utils/local-storage'
+
+import home from './home'
+import task from './task'
+import user from './user'
+import newTask from './newTask'
+import login from './login'
+import store from '../store/index'
 
 Vue.use(Router)
 
-const router = new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'index',
-      component: index
-    }
-  ]
+const RouterModel = new Router({
+  routes: [...home, ...task, ...user, ...newTask, ...login]
 })
 
-// 导航守卫
-// 使用 router.beforeEach 注册一个全局前置守卫，判断用户是否登陆
-// router.beforeEach((to, from, next) => {
-//   if (to.path === '/index') {
-//     next()
-//   } else {
-//     let token = localStorage.getItem('Authorization')
-//     if (token === 'null' || token === '') {
-//       next('/index')
-//     } else {
-//       next()
-//     }
-//   }
-// })
+RouterModel.beforeEach((to, from, next) => {
+  const { Authorization } = getLocalStorage(
+    'Authorization'
+  )
+  if (!Authorization) {
+    if (to.meta.login) {
+      console.log('login')
+      next({ name: 'login', query: { redirect: to.name } })
+      return
+    }
+  }
+  console.log(to.meta, 'meta')
+  // 页面顶部菜单拦截
+  let emptyObj = JSON.stringify(to.meta) === '{}'
+  let undefinedObj = typeof (to.meta.showHeader) === 'undefined'
+  if (!emptyObj && !undefinedObj) {
+    store.commit('CHANGE_HEADER', to.meta)
+  } else {
+    store.commit('CHANGE_HEADER', {showHeader: true, title: ''})
+  }
+  next()
+})
 
-export default router
+export default RouterModel
