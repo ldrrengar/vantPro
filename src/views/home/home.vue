@@ -1,14 +1,21 @@
 <template>
   <div class="tab_home">
-    <!--<van-swipe :autoplay="3000"-->
-               <!--indicator-color="white">-->
+    <van-swipe :autoplay="3000"
+               indicator-color="white">
       <!--<van-swipe-item v-for="(banner, index) in shopInfos.banner"-->
                       <!--:key="index">-->
         <!--<img src="http://yinzan.net/static/images/head1.png"-->
              <!--style="height:230px">-->
       <!--</van-swipe-item>-->
-    <!--</van-swipe>-->
-    <div class="bg"></div>
+      <van-swipe-item>
+        <div class="bg">
+        <marquee style="color: #ffffff;" direction="left" behavior="scroll" scrollamount="10" scrolldelay="0" loop="-1" hspace="10" vspace="10">
+        恭喜 花不败 在10分钟前提现100.00元 恭喜 未来在哪里 在20分钟前提现650.00元 恭喜 敢问路在何方 在12分钟前提现8000.00元
+          <!--&#45;&#45;&gt;-->
+        </marquee>
+        </div>
+      </van-swipe-item>
+    </van-swipe>
     <van-row class="order_status">
       <van-col span="6">
         <div class="order_status_icon" style="background: #f55315; color: #ffffff;" @click="$router.push({path: '/user/order/list/1'})">
@@ -47,25 +54,21 @@
         </div>
       </van-col>
     </van-row>
-    <van-row class="taskRow">
-      <div class="order_status_icon" style="background: #5c85fb;; color: #ffffff;" @click="$router.push({path: '/user/order/list/4'})">
-        <van-icon class="iconfont icon-ziyuan" style="font-size: 25px;"/>&ensp;今日任务数: 518000
-      </div>
+    <van-row class="taskRow" style="background: #5c85fb; color: #ffffff;">
+      <van-col span="6"><van-icon class="iconfont icon-ziyuan" style="font-size: 25px;"/></van-col>
+      <van-col span="18" style="text-align: left;">今日任务数: 518000</van-col>
     </van-row>
-    <van-row class="taskRow">
-      <div class="order_status_icon" style="background: #0ed4c5;; color: #ffffff;" @click="$router.push({path: '/user/order/list/4'})">
-        <van-icon class="iconfont icon-ziyuan" style="font-size: 25px;"/>&ensp;今日用户数: 52756
-      </div>
+    <van-row class="taskRow" style="background: #0ed4c5; color: #ffffff;">
+      <van-col span="6"><van-icon class="iconfont icon-ziyuan" style="font-size: 25px;"/></van-col>
+      <van-col span="18" style="text-align: left;">今日用户数: 52756</van-col>
     </van-row>
-    <van-row class="taskRow">
-      <div class="order_status_icon" style="background: #ff655b;; color: #ffffff;" @click="$router.push({path: '/user/order/list/4'})">
-        <van-icon class="iconfont icon-ziyuan" style="font-size: 25px;"/>&ensp;今日已完成: 2865589
-      </div>
+    <van-row class="taskRow" style="background: #ff655b; color: #ffffff;">
+      <van-col span="6"><van-icon class="iconfont icon-ziyuan" style="font-size: 25px;"/></van-col>
+      <van-col span="18"  style="text-align: left;">今日已完成: 2865589</van-col>
     </van-row>
-    <van-row class="taskRow">
-      <div class="order_status_icon" style="background: #ffa72d;; color: #ffffff;" @click="$router.push({path: '/user/order/list/4'})">
-        <van-icon class="iconfont icon-ziyuan" style="font-size: 25px;"/>&ensp;今日排行榜: 3
-      </div>
+    <van-row class="taskRow" style="background: #ffa72d; color: #ffffff;">
+      <van-col span="6"><van-icon class="iconfont icon-ziyuan" style="font-size: 25px;"/></van-col>
+      <van-col span="18" style="text-align: left;">今日排行榜: 3</van-col>
     </van-row>
   </div>
 </template>
