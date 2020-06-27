@@ -4,6 +4,7 @@
               :swipe-threshold="5"
               @click="handleTabClick">
       <van-tab v-for="(tabTitle, index) in tabTitles"
+               fixed
                :title="tabTitle"
                :key="index">
         <!--<template #title> <van-icon class="iconfont icon-chepai"/>&emsp;{{ tabTitle }} </template>-->
@@ -18,10 +19,10 @@
           >
            <van-row style="background: #FFFFFF; font-size: 18px; height: 5vh; line-height: 5vh; font-weight: 700; padding: 0 10px;">
              <van-col span="18">
-               编号: {{ task.num }} <span class="title" v-show="isShow">会员任务</span>
+               编号: {{ task.tasks_id }} <span class="title" v-show="isShow">会员任务</span>
              </van-col>
              <van-col span="6" style="text-align: end;">
-               <span style="color: red;">￥{{ task.yuan }}</span>
+               <span style="color: red;">￥{{ task.target_times }}</span>
              </van-col>
            </van-row>
             <van-divider style="margin: 6px 0;" />
@@ -30,13 +31,13 @@
                 <div style="display: flex;">
                   <van-image :src="require('../../../assets/images/dy.png')" />
                   <div style="display: flex; flex-direction: column;margin-left: 8px; justify-content: center;">
-                    <span style="font-size: 14px;">要求: {{ task.contents }}</span>
-                    <span style="font-size: 14px; color: red;">剩余: {{ task.remaining }}</span>
+                    <span style="font-size: 14px;">要求: {{ task.target_times }}</span>
+                    <span style="font-size: 14px; color: red;">剩余: {{ task.target_times }}</span>
                   </div>
                 </div>
               </van-col>
               <van-col span="6" style="text-align: end; margin-top: 7px;">
-                <van-button type="primary" size="small" @click="toOrderDetail(task.id)">领取</van-button>
+                <van-button type="primary" size="small" @click="toOrderDetail(task.tasks_id)">领取</van-button>
               </van-col>
             </van-row>
           </van-row>
@@ -54,7 +55,7 @@
 
 <script>
 import { Tab, Tabs, Panel, Card, List, Tag, Row, Col, Image, Divider, Button } from 'vant'
-
+import { getTasks } from '@/api/loginapi'
 export default {
   name: 'getTask',
 
@@ -99,15 +100,35 @@ export default {
         this.isShow = true
       }
       this.page++
-      this.taskList = [
-        {
-          id: 1,
-          num: 123,
-          yuan: '400',
-          contents: '点赞',
-          remaining: 333
+      // this.taskList = [
+      //   {
+      //     id: 1,
+      //     num: 123,
+      //     yuan: '400',
+      //     contents: '点赞',
+      //     remaining: 333
+      //   }
+      // ]
+      let data = {
+        page: this.page,
+        pageSize: this.limit
+      }
+      getTasks(data).then(res => {
+        // if (this.taskList.length === 0) {
+        //   this.taskList = res.data.results
+        // } else {
+        //   this.taskList.push(res.data.results)
+        // }
+        // this.taskList.push(res.data.results)
+        // this.taskList = JSON.parse(JSON.stringify(this.taskList))
+        this.taskList = [...this.taskList, ...res.data.results]
+        this.loading = false
+        if (res.data.next === null) {
+          this.finished = true
+        } else {
+          this.finished = false
         }
-      ]
+      })
       // orderList({
       //   showType: this.activeIndex,
       //   page: this.page,
@@ -137,7 +158,7 @@ export default {
     },
     handleTabClick () {
       this.page = 0
-      this.orderList = []
+      this.taskList = []
       this.getOrderList()
     },
     // 领取请求

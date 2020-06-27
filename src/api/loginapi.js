@@ -9,3 +9,10 @@ export const authLoginByAccount = (data) => {
     data
   })
 }
+
+export const getTasks = (data) => {
+  return request({
+    url: `/api/api/tasks/?page=${data.page}&page_size=${data.pageSize}`,
+    method: 'get'
+  })
+}
