@@ -67,7 +67,7 @@ export default {
     }
   },
   created () {
-    this.activeIndex = this.$route.query.activeIndex
+    // this.activeIndex = this.$route.query.activeIndex
     if (this.activeIndex === 0) {
       this.isShow = false
     } else {
