@@ -27,7 +27,7 @@
             </van-row>
             <van-divider style="margin: 6px 0;" />
             <van-row style="background: #FFFFFF; height: 9vh; padding: 0 10px;">
-              <van-col span="10">
+              <!--<van-col span="10">-->
                 <div style="display: flex;">
                   <van-image :src="require('../../assets/images/dy.png')" />
                   <div style="display: flex; flex-direction: column;margin-left: 8px; justify-content: center;">
@@ -35,11 +35,11 @@
                     <span style="font-size: 14px; color: #07c160;">状态: {{ tabTitle }}</span>
                   </div>
                 </div>
-              </van-col>
-              <van-col span="14" style="text-align: end; margin-top: 7px;">
+              <!--</van-col>-->
+              <!--<van-col span="14" style="text-align: end; margin-top: 7px;">-->
                 <!--<van-button type="primary" size="small" @click="toOrderDetail(task.tasks_id)">领取</van-button>-->
-                <span class="title1">审核时间28分钟前</span>
-              </van-col>
+                <!--<span class="title1">审核时间28分钟前</span>-->
+              <!--</van-col>-->
             </van-row>
           </van-row>
           <!--<van-panel v-for="(task, i) in taskList"-->
