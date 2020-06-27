@@ -1,5 +1,9 @@
 <template>
   <div class="tab_home">
+    <van-notice-bar
+      left-icon="laba"
+      text="恭喜 花不败 在10分钟前提现100.00元 恭喜 未来在哪里 在20分钟前提现650.00元 恭喜 敢问路在何方 在12分钟前提现8000.00元。"
+    />
     <van-swipe :autoplay="3000"
                indicator-color="white">
       <!--<van-swipe-item v-for="(banner, index) in shopInfos.banner"-->
@@ -10,7 +14,7 @@
       <van-swipe-item>
         <div class="bg">
         <marquee style="color: #ffffff;" direction="left" behavior="scroll" scrollamount="10" scrolldelay="0" loop="-1" hspace="10" vspace="10">
-        恭喜 花不败 在10分钟前提现100.00元 恭喜 未来在哪里 在20分钟前提现650.00元 恭喜 敢问路在何方 在12分钟前提现8000.00元
+        <!---->
           <!--&#45;&#45;&gt;-->
         </marquee>
         </div>
@@ -18,10 +22,10 @@
     </van-swipe>
     <van-row class="order_status">
       <van-col span="6">
-        <div class="order_status_icon" style="background: #f55315; color: #ffffff;" @click="$router.push({path: '/user/order/list/1'})">
+        <div class="order_status_icon" style="background: #f55315; color: #ffffff;" @click="$router.push({path: '/news'})">
           <van-icon class="iconfont icon-xinwen"/>
         </div>
-        <div>新闻公告</div>
+        <div>通知公告</div>
       </van-col>
       <van-col span="6">
         <div class="order_status_icon" style="background: #f53952; color: #ffffff;" @click="$router.push({path: '/user/order/list/2'})">
@@ -44,13 +48,13 @@
     </van-row>
     <van-row class="taskRow">
       <van-col span="12">
-        <div class="order_status_icon" style="background: #2ee0f5;; color: #ffffff;" @click="$router.push({path: '/user/order/list/4'})">
-          <van-icon class="iconfont icon-ziyuan" style="font-size: 18px;"/>&ensp;普通任务
+        <div class="order_status_icon" style="background: #2ee0f5;; color: #ffffff;" @click="toTask(0)">
+          <van-icon class="iconfont icon-chepai" style="font-size: 20px;"/>&ensp;普通任务
         </div>
       </van-col>
       <van-col span="12">
-        <div class="order_status_icon" style="background: #ff6ca5;; color: #ffffff;" @click="$router.push({path: '/user/order/list/4'})">
-          <van-icon class="iconfont icon-ziyuan" style="font-size: 18px;"/>&ensp;会员任务
+        <div class="order_status_icon" style="background: #ff6ca5;; color: #ffffff;" @click="toTask(1)">
+          <van-icon class="iconfont icon-feiji" style="font-size: 20px;"/>&ensp;会员任务
         </div>
       </van-col>
     </van-row>
@@ -90,7 +94,8 @@ import {
   GridItem,
   Row,
   Col,
-  Tag
+  Tag,
+  NoticeBar
 } from 'vant'
 import scrollFixed from '@/mixin/scroll-fixed'
     export default {
@@ -123,6 +128,15 @@ import scrollFixed from '@/mixin/scroll-fixed'
           // })
         },
         initViews () {
+        },
+        // 进入任务页面
+        toTask (val) {
+          this.$router.push({
+            name: 'getTask',
+            query: {
+              activeIndex: val
+            }
+          })
         }
       },
       components: {
@@ -141,7 +155,8 @@ import scrollFixed from '@/mixin/scroll-fixed'
         [TabbarItem.name]: TabbarItem,
         [Tag.name]: Tag,
         [Grid.name]: Grid,
-        [GridItem.name]: GridItem
+        [GridItem.name]: GridItem,
+        [NoticeBar.name]: NoticeBar
       }
     }
 </script>

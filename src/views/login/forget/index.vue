@@ -1,5 +1,5 @@
 <template>
-  <md-field-group class="foget_view">
+  <md-field-group class="foget_view" style="margin-top: 44px;">
   <md-field
     v-model="mobile"
     icon="mobile"

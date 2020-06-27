@@ -18,5 +18,27 @@ export default [
     redirect: {
       name: 'home'
     }
+  },
+  {
+    path: '/news',
+    name: 'news',
+    components: {
+      default: () => import('@/views/home/news/news')
+    },
+    meta: {
+      showHeader: true,
+      title: '通知公告'
+    }
+  },
+  {
+    path: '/newsDetail',
+    name: 'newsDetail',
+    components: {
+      default: () => import('@/views/home/news/newsDetail')
+    },
+    meta: {
+      showHeader: true,
+      title: '公告详情'
+    }
   }
 ]

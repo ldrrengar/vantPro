@@ -51,10 +51,9 @@
 import field from '@/components/field/'
 import fieldGroup from '@/components/field-group/'
 
-// import { authLoginByAccount } from '@/api/api'
-// import { setLocalStorage } from '@/utils/local-storage'
+import { authLoginByAccount } from '@/api/loginapi'
+import { setLocalStorage } from '@/utils/local-storage'
 import { emailReg, mobileReg } from '@/utils/validate'
-
 import { Toast } from 'vant'
 
 
@@ -85,19 +84,24 @@ export default {
     },
 
     login () {
-      // let loginData = this.getLoginData()
-      // authLoginByAccount(loginData).then(res => {
-      //   this.userInfo = res.data.data.userInfo
-      //   setLocalStorage({
-      //     Authorization: res.data.data.token,
-      //     avatar: this.userInfo.avatarUrl,
-      //     nickName: this.userInfo.nickName
-      //   })
-      //
-      //   this.routerRedirect()
+      // let loginData = {
+      //   username: this.account,
+      //   password: this.password
+      // }
+      let loginData = this.getLoginData()
+      authLoginByAccount(loginData).then(res => {
+        // this.userInfo = res.data.data.userInfo
+        setLocalStorage({
+          Authorization: res.data.token
+          // avatar: this.userInfo.avatarUrl,
+          // nickName: this.userInfo.nickName
+        })
+        console.log(res)
+        this.routerRedirect()
       // }).catch(error => {
-      //   Toast.fail(error.data.errmsg)
-      // })
+      //   console.log(error)
+      //   Toast.fail(error)
+      })
     },
 
     loginSubmit () {

@@ -13,5 +13,17 @@ export default [
       default: () => import('@/views/task/task'),
       tabbar: Tabbar
     }
+  },
+  {
+    path: '/getTask',
+    name: 'getTask',
+    meta: {
+      // login: true,
+      showHeader: true,
+      title: '任务中心'
+    },
+    components: {
+      default: () => import('@/views/task/getTask/getTask')
+    }
   }
 ]

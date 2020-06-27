@@ -23,26 +23,25 @@ service.interceptors.request.use(
 // response interceptor
 service.interceptors.response.use(
   response => {
-    const res = response.data
-
-    if (res.errno === 501) {
+    // const res = response.data
+    if (response.status === 501) {
         Toast.fail('请登录')
         setTimeout(() => {
           window.location = '#/login/'
         }, 1500)
       return Promise.reject('error')
-    } else if (res.errno === 502) {
+    } else if (response.status === 502) {
         Toast.fail('网站内部错误，请联系网站维护人员')
       return Promise.reject('error')
-    } if (res.errno === 401) {
+    } if (response.status === 401) {
       Toast.fail('参数不对')
       return Promise.reject('error')
-    } if (res.errno === 402) {
+    } if (response.status === 402) {
       Toast.fail('参数值不对')
       return Promise.reject('error')
-    } else if (res.errno !== 0) {
-      // 非5xx的错误属于业务错误，留给具体页面处理
-      return Promise.reject(response)
+    // } else if (response.status !== 0) {
+    //   // 非5xx的错误属于业务错误，留给具体页面处理
+    //   return Promise.reject(response)
     } else {
       return response
     }
@@ -51,7 +50,7 @@ service.interceptors.response.use(
     Dialog.alert({
         title: '警告',
         message: '登录连接超时'
-      });
+      })
     return Promise.reject(error)
   })
 
