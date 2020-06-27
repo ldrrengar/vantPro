@@ -35,7 +35,7 @@
       </van-row>
     </van-row>
     <van-row class="home-top-acc" style="margin: 20px; border-radius: 10px; background: #f6b806; height: 100px;">
-      <van-col span="12" style="color: #ffffff">
+      <van-col span="12" style="color: #ffffff" @click="toTask(0)">
         <div style="text-align: center; font-size: 12px;">普通任务</div>
         <div style="text-align: center; font-size: 22px;">2/2</div>
         <div style="text-align: center; font-size: 12px;">今日已做/今日可做</div>
@@ -46,7 +46,7 @@
     height: 60px;
     background: #ffffff;
     top: 20px;"></div>
-      <van-col span="12" style="color: #ffffff">
+      <van-col span="12" style="color: #ffffff" @click="toTask(1)">
         <div style="text-align: center; font-size: 12px;">会员任务</div>
         <div style="text-align: center; font-size: 22px;">2/2</div>
         <div style="text-align: center; font-size: 12px;">今日已做/今日可做</div>
@@ -54,9 +54,9 @@
     </van-row>
     <div class="user_module">
       <van-cell-group>
-        <van-cell icon="shoucang" title="提现记录" to="/user/collect" isLink/>
-        <van-cell icon="dingwei" title="资金明细" to="/user/address" isLink/>
-        <van-cell icon="kefu" title="我的邀请码" to="/user/server" isLink/>
+        <van-cell icon="shoucang" title="提现记录" to="/withdraw" isLink/>
+        <van-cell icon="dingwei" title="资金明细" to="/fundDetail" isLink/>
+        <van-cell icon="kefu" title="我的邀请码" to="/myInvitation" isLink/>
         <van-cell icon="kefu" title="我的团队" to="/user/server" isLink/>
       </van-cell-group>
     </div>
@@ -86,6 +86,17 @@ export default {
       [Image.name]: Image,
       [Divider.name]: Divider,
       [Button.name]: Button
+    },
+    methods: {
+      // 进入任务页面
+      toTask (val) {
+        this.$router.push({
+          name: 'getTask',
+          query: {
+            activeIndex: val
+          }
+        })
+      }
     }
 }
 </script>

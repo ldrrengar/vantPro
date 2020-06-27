@@ -33,7 +33,7 @@
         </div>
         <div>新手指南</div>
       </van-col>
-      <van-col span="6">
+      <van-col span="6" @click="$router.push({path: '/myInvitation'})">
         <div class="order_status_icon" style="background: #f59a08; color: #ffffff;" @click="$router.push({path: '/user/order/list/3'})">
           <van-icon class="iconfont icon-yqhy"/>
         </div>
