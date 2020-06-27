@@ -1,10 +1,92 @@
 <template>
-  <div>sssss</div>
+  <div>
+    <van-row class="home-top">
+      <van-row class="home-top-base">
+        <van-col span="6" class="base-logo"></van-col>
+        <van-col span="15" class="base-nick">
+          <div>18864835725</div>
+          <div>MR.k(青铜)</div>
+        </van-col>
+        <van-col span="3" style="margin-top: 15px;">
+          <van-icon name="set" style="font-size: 20px;"/>
+          <!--<van-icon class="iconfont icon-feiji" style="font-size: 20px;"/>-->
+        </van-col>
+      </van-row>
+      <van-row class="home-top-acc">
+        <div class="acc-lave">账户余额：<span style="color: #c51f1fab;">1.00</span><van-button type="primary" style="float: right;" size="mini" @click="toOrderDetail(task.tasks_id)">提现</van-button></div>
+        <van-row class="acc-list">
+          <van-col span="6">
+            <div style="text-align: center; color: #f1bd01;font-size: 12px;">1.00</div>
+            <div style="font-size: 12px;">任务奖励</div>
+          </van-col>
+          <van-col span="6">
+            <div style="text-align: center; color: #f1bd01;font-size: 12px;">0.00</div>
+            <div style="font-size: 12px;">套餐提成</div>
+          </van-col>
+          <van-col span="6">
+            <div style="text-align: center; color: #f1bd01;font-size: 12px;">0.00</div>
+            <div style="font-size: 12px;">团队收益</div>
+          </van-col>
+          <van-col span="6">
+            <div style="text-align: center; color: #f1bd01;font-size: 12px;">1.00</div>
+            <div style="font-size: 12px;">今日收益</div>
+          </van-col>
+        </van-row>
+      </van-row>
+    </van-row>
+    <van-row class="home-top-acc" style="margin: 20px; border-radius: 10px; background: #f6b806; height: 100px;">
+      <van-col span="12" style="color: #ffffff">
+        <div style="text-align: center; font-size: 12px;">普通任务</div>
+        <div style="text-align: center; font-size: 22px;">2/2</div>
+        <div style="text-align: center; font-size: 12px;">今日已做/今日可做</div>
+      </van-col>
+      <div style="position: absolute;
+    left: 50%;
+    width: 1px;
+    height: 60px;
+    background: #ffffff;
+    top: 20px;"></div>
+      <van-col span="12" style="color: #ffffff">
+        <div style="text-align: center; font-size: 12px;">会员任务</div>
+        <div style="text-align: center; font-size: 22px;">2/2</div>
+        <div style="text-align: center; font-size: 12px;">今日已做/今日可做</div>
+      </van-col>
+    </van-row>
+    <div class="user_module">
+      <van-cell-group>
+        <van-cell icon="shoucang" title="提现记录" to="/user/collect" isLink/>
+        <van-cell icon="dingwei" title="资金明细" to="/user/address" isLink/>
+        <van-cell icon="kefu" title="我的邀请码" to="/user/server" isLink/>
+        <van-cell icon="kefu" title="我的团队" to="/user/server" isLink/>
+      </van-cell-group>
+    </div>
+    <div class="user_module" style="margin-top: 10px;">
+      <van-cell-group>
+        <van-cell icon="shoucang" title="我的任务" to="/user/collect" isLink/>
+        <van-cell icon="dingwei" title="开通会员" to="/user/address" isLink/>
+        <van-cell icon="kefu" title="联系客服" to="/user/server" isLink/>
+      </van-cell-group>
+    </div>
+  </div>
 </template>
 
 <script>
+import { Tab, Tabs, Panel, Card, List, Tag, Row, Col, Image, Divider, Button } from 'vant'
 export default {
-    name: 'user'
+    name: 'user',
+    components: {
+      [Tab.name]: Tab,
+      [Tabs.name]: Tabs,
+      [Panel.name]: Panel,
+      [Card.name]: Card,
+      [List.name]: List,
+      [Tag.name]: Tag,
+      [Row.name]: Row,
+      [Col.name]: Col,
+      [Image.name]: Image,
+      [Divider.name]: Divider,
+      [Button.name]: Button
+    }
 }
 </script>
 
@@ -14,10 +96,10 @@ export default {
     overflow: hidden;
     border-bottom-left-radius: 500px 50px;
     border-bottom-right-radius: 500px 50px;
-    background: #282d2f;
+    background: #ffffff;
     position: relative;
     z-index: 1;
-    height: 180px;
+    height: 200px;
   }
   .home-top-base {
     position: relative;
@@ -37,6 +119,47 @@ export default {
   }
   .home-top-base >.base-nick {
     float: left;
-    margin-left: 15px;
+    padding-left: 15px;
+    margin-top: 8px;
+  }
+  .base-edit {
+    position: absolute;
+    right: 54px;
+    font-size: 24px;
+    top: 10px;
+    padding: 0 6px;
+  }
+  .base-set {
+    position: absolute;
+    right: 9px;
+    font-size: 24px;
+    top: 10px;
+    padding: 0 6px;
+  }
+  .home-top-acc {
+    background: #e4ede3;
+    padding: 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    position: relative;
+    height: 130px;
+  }
+  .acc-list {
+    display: flex;
+    margin-top: 15px;
+  }
+  .acc-list a {
+    display: block;
+    flex: auto;
+    text-align: center;
+    font-size: 12px;
+  }
+  .acc-list a span {
+    display: block;
+    font-size: 18px;
+    color: #F37B1D;
+  }
+  .user_module {
+    background-color: #fff;
   }
 </style>
