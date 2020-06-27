@@ -19,10 +19,10 @@
           >
             <van-row style="background: #FFFFFF; font-size: 18px; height: 5vh; line-height: 5vh; font-weight: 700; padding: 0 10px;">
               <van-col span="18">
-                编号: {{ task.tasks_id }} <span class="title" v-show="isShow">会员任务</span>
+                编号: {{ task.execute_id }} <span class="title" v-show="task.tasks_id.type !== '0'">会员任务</span>
               </van-col>
               <van-col span="6" style="text-align: end;">
-                <span style="color: red;">￥{{ task.target_times }}</span>
+                <span style="color: red;">￥{{ task.price }}</span>
               </van-col>
             </van-row>
             <van-divider style="margin: 6px 0;" />
@@ -31,8 +31,8 @@
                 <div style="display: flex;">
                   <van-image :src="require('../../assets/images/dy.png')" />
                   <div style="display: flex; flex-direction: column;margin-left: 8px; justify-content: center;">
-                    <span style="font-size: 14px;">要求: {{ task.target_times }}</span>
-                    <span style="font-size: 14px; color: #07c160;">状态: {{ task.target_times }}</span>
+                    <span style="font-size: 14px;">要求: {{ task.tasks_id.requirement.type }}</span>
+                    <span style="font-size: 14px; color: #07c160;">状态: {{ tabTitle }}</span>
                   </div>
                 </div>
               </van-col>
@@ -56,7 +56,7 @@
 
 <script>
 import { Tab, Tabs, Panel, Card, List, Tag, Row, Col, Image, Divider, Button } from 'vant'
-import { getTasks } from '@/api/loginapi'
+import { getTasksSelfComplete } from '@/api/loginapi'
 export default {
   name: 'task',
 
@@ -101,20 +101,13 @@ export default {
         this.isShow = true
       }
       this.page++
-      // this.taskList = [
-      //   {
-      //     id: 1,
-      //     num: 123,
-      //     yuan: '400',
-      //     contents: '点赞',
-      //     remaining: 333
-      //   }
-      // ]
+
       let data = {
         page: this.page,
-        pageSize: this.limit
+        pageSize: this.limit,
+        state: this.activeIndex
       }
-      getTasks(data).then(res => {
+      getTasksSelfComplete(data).then(res => {
         // if (this.taskList.length === 0) {
         //   this.taskList = res.data.results
         // } else {
