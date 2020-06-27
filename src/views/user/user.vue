@@ -60,7 +60,7 @@
         <van-cell icon="kefu" title="我的团队" to="/user/server" isLink/>
       </van-cell-group>
     </div>
-    <div class="user_module" style="margin-top: 10px;">
+    <div class="user_module" style="margin: 10px 0;">
       <van-cell-group>
         <van-cell icon="shoucang" title="我的任务" to="/user/collect" isLink/>
         <van-cell icon="dingwei" title="开通会员" to="/user/address" isLink/>
