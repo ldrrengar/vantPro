@@ -111,7 +111,8 @@ export default {
       // ]
       let data = {
         page: this.page,
-        pageSize: this.limit
+        pageSize: this.limit,
+        type: this.activeIndex
       }
       getTasks(data).then(res => {
         // if (this.taskList.length === 0) {

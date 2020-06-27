@@ -7,8 +7,8 @@ export default [
     meta: {
       login: true,
       keepAlive: true,
-      showHeader: true,
-      title: '发布任务'
+      showHeader: false
+      // title: '发布任务'
     },
     components: {
       default: () => import('@/views/newTask/newTask'),

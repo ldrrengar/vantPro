@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-top: 44px;">
+  <div style="margin-top: 20px;">
     <van-form validate-first @failed="onFailed">
       <van-field
         v-model="video"

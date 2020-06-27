@@ -12,7 +12,7 @@ export const authLoginByAccount = (data) => {
 
 export const getTasks = (data) => {
   return request({
-    url: `/api/api/tasks/?page=${data.page}&page_size=${data.pageSize}`,
+    url: `/api/api/tasks/?page=${data.page}&page_size=${data.pageSize}&type=${data.type}`,
     method: 'get'
   })
 }
