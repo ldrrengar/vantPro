@@ -31,7 +31,7 @@
                 <div style="display: flex;">
                   <van-image :src="require('../../assets/images/dy.png')" />
                   <div style="display: flex; flex-direction: column;margin-left: 8px; justify-content: center;">
-                    <span style="font-size: 14px;">要求: {{ task.tasks_id.requirement.type }}</span>
+                    <span style="font-size: 14px;">要求: {{ task.tasks_id.tasks_name }}</span>
                     <span style="font-size: 14px; color: #07c160;">状态: {{ tabTitle }}</span>
                   </div>
                 </div>

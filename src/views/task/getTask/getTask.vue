@@ -22,7 +22,7 @@
                编号: {{ task.tasks_id }} <span class="title" v-show="isShow">会员任务</span>
              </van-col>
              <van-col span="6" style="text-align: end;">
-               <span style="color: red;">￥{{ task.requirement.complete_price }}</span>
+               <span style="color: red;">￥{{ task.cost * 0.5}}</span>
              </van-col>
            </van-row>
             <van-divider style="margin: 6px 0;" />
@@ -31,7 +31,7 @@
                 <div style="display: flex;">
                   <van-image :src="require('../../../assets/images/dy.png')" />
                   <div style="display: flex; flex-direction: column;margin-left: 8px; justify-content: center;">
-                    <span style="font-size: 14px;">要求: {{ task.requirement.type }}</span>
+                    <span style="font-size: 14px;">要求: {{ task.tasks_name }}</span>
                     <span style="font-size: 14px; color: red;">剩余: {{ task.target_times-task.completed_times }}</span>
                   </div>
                 </div>
