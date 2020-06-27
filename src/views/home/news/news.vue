@@ -9,10 +9,10 @@
       :finished="finished"
       finished-text="没有更多了"
       @load="onLoad">
-     <van-cell-group v-for="(item, i) in list" :key="i" style="margin: 5px;"  @click="toDetail(item.id)">
-        <van-cell :title="item.title" style="font-size: 20px;font-weight: 700;" isLink>
+     <van-cell-group v-for="(item, i) in list" :key="i" style="margin: 5px;"  @click="toDetail(item.new_id)">
+        <van-cell :title="item.new_title" style="font-size: 20px;font-weight: 700;" isLink>
         </van-cell>
-        <div style="font-size: 12px;font-weight: 100;padding: 10px;margin-left: 5px;">{{ item.contant }}</div>
+        <div style="font-size: 12px;font-weight: 100;padding: 10px;margin-left: 5px;">&emsp;&emsp;{{ item.new_content }}</div>
       </van-cell-group>
     </van-list>
   </van-pull-refresh>
@@ -20,6 +20,7 @@
 
 <script>
 import { Row, Col, PullRefresh, List } from 'vant'
+import { getNews } from '@/api/loginapi'
 export default {
     name: 'news',
     data () {
@@ -28,7 +29,9 @@ export default {
       isLoading: false,
       list: [],
       loading: false,
-      finished: false
+      finished: false,
+      page: 0,
+      limit: 10
     }
   },
   methods: {
@@ -42,21 +45,27 @@ export default {
       }, 1000)
     },
     onLoad () {
-      // 异步更新数据
-      // setTimeout 仅做示例，真实场景中一般为 ajax 请求
-      setTimeout(() => {
-        for (let i = 0; i < 10; i++) {
-          this.list.push({id: i, title: '端午节特别活动', contant: '端午特别活动'})
-        }
-
-        // 加载状态结束
+      this.page++
+      let data = {
+        page: this.page,
+        pageSize: this.limit
+      }
+      getNews(data).then(res => {
+        // if (this.taskList.length === 0) {
+        //   this.taskList = res.data.results
+        // } else {
+        //   this.taskList.push(res.data.results)
+        // }
+        // this.taskList.push(res.data.results)
+        // this.taskList = JSON.parse(JSON.stringify(this.taskList))
+        this.list = [...this.list, ...res.data.results]
         this.loading = false
-
-        // 数据全部加载完成
-        if (this.list.length >= 15) {
+        if (res.data.next === null) {
           this.finished = true
+        } else {
+          this.finished = false
         }
-      }, 1000)
+      })
     }
   },
     components: {
