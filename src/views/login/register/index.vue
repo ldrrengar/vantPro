@@ -37,6 +37,7 @@
 import header from '@/components/Header'
 import field from '@/components/field/'
 import fieldGroup from '@/components/field-group/'
+import { getCode } from '@/api/loginapi'
 
 export default {
   data () {
@@ -56,7 +57,12 @@ export default {
       // this.$router.push({ name: 'forgetReset' })
     },
     getCode () {
-      this.counting = true
+      let data = {
+        mobile: this.mobile
+      }
+      getCode(data).then(res => {
+        console.log(res)
+      })
     },
     countdownend () {
       this.counting = false
