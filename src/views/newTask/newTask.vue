@@ -131,9 +131,11 @@ export default {
       onSubmit () {
         let data = {
           url : this.url,
-          target_times: this.target_times,
+          target_times: parseInt(this.target_times),
+          // target_times:this.target_times,
           total_cost: this.total_cost,
-          type: this.type
+          tasks_name: this.type,
+          cost: this.num
         }
         sumbitTasks(data).then(res => {
           console.log(res)
