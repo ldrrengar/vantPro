@@ -57,6 +57,7 @@
 <script>
 import { Tab, Tabs, Panel, Card, List, Tag, Row, Col, Image, Divider, Button } from 'vant'
 import { getTasksSelfComplete } from '@/api/loginapi'
+import { getLocalStorage } from '@/utils/local-storage'
 export default {
   name: 'task',
 
@@ -105,8 +106,10 @@ export default {
       let data = {
         page: this.page,
         pageSize: this.limit,
-        state: this.activeIndex
+        state: this.activeIndex,
+        complete_user: getLocalStorage(['username']).username
       }
+      console.log(getLocalStorage('username'))
       getTasksSelfComplete(data).then(res => {
         // if (this.taskList.length === 0) {
         //   this.taskList = res.data.results

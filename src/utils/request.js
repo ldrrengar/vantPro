@@ -11,9 +11,16 @@ const service = axios.create({
 service.interceptors.request.use(
     config => {
     if (!config.headers['Authorization']) {
-      config.headers['Authorization'] = 'JWT ' + `${window.localStorage.getItem(
+      let token
+      token = `${window.localStorage.getItem(
         'Authorization'
       ) || ''}`
+      console.log(token)
+      if (token !== '') {
+ config.headers['Authorization'] = 'JWT ' + `${window.localStorage.getItem(
+        'Authorization'
+      ) || ''}`
+}
     }
     return config
   },

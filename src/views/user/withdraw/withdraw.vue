@@ -17,14 +17,14 @@
                    :key="i"
           >
             <van-row style="background: #FFFFFF; font-size: 18px; height: 5vh; line-height: 5vh; font-weight: 700; padding: 0 10px;">
-              提现金额: <span style="color: #db3d3c;">￥{{ task.execute_id }}</span>
+              提现金额: <span style="color: #db3d3c;">￥{{ task.money }}</span>
             </van-row>
             <van-divider style="margin: 6px 0;" />
             <van-row style="background: #FFFFFF; height: 9vh; padding: 0 10px;">
               <!--<van-col span="10">-->
               <div style="display: flex;">
                 <div style="display: flex; flex-direction: column;margin-left: 8px; justify-content: center;">
-                  <span style="font-size: 14px;">提交日期: {{ task.tasks_id.tasks_name }}</span>
+                  <span style="font-size: 14px;">提交日期: {{ task.add_time }}</span>
                   <span style="font-size: 14px; color: #07c160;">审核状态: {{ tabTitle }}</span>
                 </div>
               </div>
@@ -38,7 +38,8 @@
 
 <script>
 import { Tab, Tabs, Panel, Card, List, Tag, Row, Col, Image, Divider, Button } from 'vant'
-import { getTasksSelfComplete } from '@/api/loginapi'
+import { getMoneyRecord } from '@/api/loginapi'
+import { getLocalStorage } from '@/utils/local-storage'
 export default {
   name: 'withdraw',
 
@@ -74,9 +75,10 @@ export default {
       let data = {
         page: this.page,
         pageSize: this.limit,
-        state: this.activeIndex
+        state: this.activeIndex,
+        user: getLocalStorage(['username']).username
       }
-      getTasksSelfComplete(data).then(res => {
+      getMoneyRecord(data).then(res => {
         this.taskList = [...this.taskList, ...res.data.results]
         this.loading = false
         if (res.data.next === null) {

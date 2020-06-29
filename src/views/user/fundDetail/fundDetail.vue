@@ -17,14 +17,14 @@
                    :key="i"
           >
             <van-row style="background: #FFFFFF; font-size: 18px; height: 5vh; line-height: 5vh; font-weight: 700; padding: 0 10px;">
-              <span>执行操作: 提现</span><span style="color: #1aad19; float: right">-50</span>
+              <span>执行操作: {{ task.operation }}</span><span style="color: #1aad19; float: right">{{ task.money }}</span>
             </van-row>
             <van-divider style="margin: 6px 0;" />
             <van-row style="background: #FFFFFF; height: 9vh; padding: 0 10px;">
               <div style="display: flex;">
                 <div style="display: flex; flex-direction: column;margin-left: 8px; justify-content: center;">
-                  <span style="font-size: 14px;">执行编号: 1086</span>
-                  <span style="font-size: 14px;">执行时间: 2020-06-27 11:11</span>
+                  <span style="font-size: 14px;">执行编号: {{ task.capital_id }}</span>
+                  <span style="font-size: 14px;">执行时间: {{ task.add_time }}</span>
                 </div>
               </div>
             </van-row>
@@ -37,7 +37,8 @@
 
 <script>
 import { Tab, Tabs, Panel, Card, List, Tag, Row, Col, Image, Divider, Button } from 'vant'
-import { getTasksSelfComplete } from '@/api/loginapi'
+import { getCapital } from '@/api/loginapi'
+import { getLocalStorage } from '@/utils/local-storage'
 export default {
   name: 'withdraw',
 
@@ -70,12 +71,19 @@ export default {
     },
     getOrderList () {
       this.page++
+      let typeVal = this.activeIndex
+      if (typeVal === 0) {
+        typeVal = ''
+      } else {
+        typeVal = typeVal - 1
+      }
       let data = {
         page: this.page,
         pageSize: this.limit,
-        state: this.activeIndex
+        type: typeVal,
+        user: getLocalStorage(['username']).username
       }
-      getTasksSelfComplete(data).then(res => {
+      getCapital(data).then(res => {
         this.taskList = [...this.taskList, ...res.data.results]
         this.loading = false
         if (res.data.next === null) {

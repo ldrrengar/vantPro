@@ -36,6 +36,7 @@
 import header from '@/components/Header'
 import field from '@/components/field/'
 import fieldGroup from '@/components/field-group/'
+import { getCode, resetPassword } from '@/api/loginapi'
 
 export default {
   data () {
@@ -52,15 +53,28 @@ export default {
   methods: {
     submitCode () {
       // this.$router.push({ name: 'forgetReset' })
+      let data = {
+        username : this.mobile,
+        code: this.code,
+        // target_times:this.target_times,
+        password: this.password
+      }
+      resetPassword(data).then(res => {
+        console.log(res)
+      })
     },
     getCode () {
-      this.counting = true
+      let data = {
+        mobile: this.mobile
+      }
+      getCode(data).then(res => {
+        console.log(res)
+      })
     },
     countdownend () {
       this.counting = false
     }
   },
-
   components: {
     [field.name]: field,
     [fieldGroup.name]: fieldGroup,

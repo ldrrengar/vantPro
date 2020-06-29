@@ -92,7 +92,8 @@ export default {
       authLoginByAccount(loginData).then(res => {
         // this.userInfo = res.data.data.userInfo
         setLocalStorage({
-          Authorization: res.data.token
+          Authorization: res.data.token,
+          username: this.account
           // avatar: this.userInfo.avatarUrl,
           // nickName: this.userInfo.nickName
         })
@@ -127,9 +128,10 @@ export default {
 
     getLoginData () {
       const password = this.password
-      const account = this.getUserType(this.account)
+      // const account = this.getUserType(this.account)
       return {
-        [account]: this.account,
+        // [account]: this.account,
+        username: this.account,
         password: password
       }
     },
