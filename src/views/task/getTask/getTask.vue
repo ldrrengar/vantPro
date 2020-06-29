@@ -100,28 +100,12 @@ export default {
         this.isShow = true
       }
       this.page++
-      // this.taskList = [
-      //   {
-      //     id: 1,
-      //     num: 123,
-      //     yuan: '400',
-      //     contents: '点赞',
-      //     remaining: 333
-      //   }
-      // ]
       let data = {
         page: this.page,
         pageSize: this.limit,
         type: this.activeIndex
       }
       getTasks(data).then(res => {
-        // if (this.taskList.length === 0) {
-        //   this.taskList = res.data.results
-        // } else {
-        //   this.taskList.push(res.data.results)
-        // }
-        // this.taskList.push(res.data.results)
-        // this.taskList = JSON.parse(JSON.stringify(this.taskList))
         this.taskList = [...this.taskList, ...res.data.results]
         this.loading = false
         if (res.data.next === null) {
@@ -164,6 +148,12 @@ export default {
     },
     // 领取请求
     toOrderDetail (id) {
+      this.$router.replace({
+        name: 'pickTask',
+        params: {
+          id: id
+        }
+      })
     }
   },
   components: {

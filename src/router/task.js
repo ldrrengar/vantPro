@@ -25,5 +25,17 @@ export default [
     components: {
       default: () => import('@/views/task/getTask/getTask')
     }
+  },
+  {
+    path: '/pickTask',
+    name: 'pickTask',
+    meta: {
+      login: true,
+      showHeader: true,
+      title: '领取'
+    },
+    components: {
+      default: () => import('@/views/task/getTask/pickTask')
+    }
   }
 ]

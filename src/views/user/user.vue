@@ -7,7 +7,7 @@
           <div>18864835725</div>
           <div>MR.k(青铜)</div>
         </van-col>
-        <van-col span="3" style="margin-top: 15px;">
+        <van-col span="3" style="margin-top: 15px;text-align: end;">
           <van-icon name="set" style="font-size: 20px;"/>
           <!--<van-icon class="iconfont icon-feiji" style="font-size: 20px;"/>-->
         </van-col>
@@ -17,19 +17,19 @@
         <van-row class="acc-list">
           <van-col span="6">
             <div style="text-align: center; color: #f1bd01;font-size: 12px;">1.00</div>
-            <div style="font-size: 12px;">任务奖励</div>
+            <div style="font-size: 12px; text-align: center;">任务奖励</div>
           </van-col>
           <van-col span="6">
             <div style="text-align: center; color: #f1bd01;font-size: 12px;">0.00</div>
-            <div style="font-size: 12px;">套餐提成</div>
+            <div style="font-size: 12px; text-align: center;">套餐提成</div>
           </van-col>
           <van-col span="6">
             <div style="text-align: center; color: #f1bd01;font-size: 12px;">0.00</div>
-            <div style="font-size: 12px;">团队收益</div>
+            <div style="font-size: 12px; text-align: center;">团队收益</div>
           </van-col>
           <van-col span="6">
             <div style="text-align: center; color: #f1bd01;font-size: 12px;">1.00</div>
-            <div style="font-size: 12px;">今日收益</div>
+            <div style="font-size: 12px; text-align: center;">今日收益</div>
           </van-col>
         </van-row>
       </van-row>
@@ -172,5 +172,8 @@ export default {
   }
   .user_module {
     background-color: #fff;
+  }
+  .van-icon {
+    font-size: 20px;
   }
 </style>

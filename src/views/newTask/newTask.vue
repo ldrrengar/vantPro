@@ -23,7 +23,7 @@
       <van-field
         v-model="type"
         label="任务要求"
-        placeholder="请选择"
+        placeholder="请输入"
         :rules="[{ required: true, message: '请选择任务要求' }]"
       />
       <van-field
@@ -41,7 +41,7 @@
         show-word-limit
       />
       <div style="margin: 16px;">
-        <van-button round block type="info" native-type="submit">
+        <van-button block type="info" native-type="submit">
           确定提交
         </van-button>
       </div>
