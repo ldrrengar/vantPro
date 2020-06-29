@@ -54,7 +54,7 @@ export default {
     submitCode () {
       // this.$router.push({ name: 'forgetReset' })
       let data = {
-        username : this.mobile,
+        username: this.mobile,
         code: this.code,
         // target_times:this.target_times,
         password: this.password

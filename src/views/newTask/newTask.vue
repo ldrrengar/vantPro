@@ -130,7 +130,7 @@ export default {
       },
       onSubmit () {
         let data = {
-          url : this.url,
+          url: this.url,
           target_times: parseInt(this.target_times),
           // target_times:this.target_times,
           total_cost: this.total_cost,

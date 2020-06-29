@@ -33,7 +33,7 @@ export const getNewsDetails = (data) => {
 
 export const getTasksType = (data) => {
   return request({
-    url: `/api/api/tasks_type/`,
+    url: '/api/api/tasks_type/',
     method: 'get'
   })
 }
@@ -47,7 +47,7 @@ export const getTasksSelfComplete = (data) => {
 
 export const sumbitTasks = (data) => {
   return request({
-    url: `/api/api/tasks/`,
+    url: '/api/api/tasks/',
     method: 'post',
     data
   })
@@ -55,7 +55,7 @@ export const sumbitTasks = (data) => {
 
 export const getCode = (data) => {
   return request({
-    url: `/api/api/verify/`,
+    url: '/api/api/verify/',
     method: 'post',
     data
   })
@@ -63,7 +63,7 @@ export const getCode = (data) => {
 
 export const register = (data) => {
   return request({
-    url: `/api/api/register/`,
+    url: '/api/api/register/',
     method: 'post',
     data
   })
