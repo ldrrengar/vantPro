@@ -30,7 +30,8 @@
         v-model="price"
         label="出价"
         placeholder="请输入"
-        :rules="[{ required: true, message: '请选择任务要求' }]"
+        @keyup.native="priveChange"
+        :rules="[{ required: true, message: '请输入单条价格' }]"
       />
       <van-field
         readonly
@@ -116,12 +117,10 @@ export default {
         this.showPicker = false
         this.costSum()
       },
-      onConfirm1 (value) {
-        this.type = value.type
-        this.price = value.price
-        this.complete_price = value.complete_price
-        this.showPicker1 = false
-        this.costSum()
+      priveChange () {
+        if (this.num !== 0 && this.price !== '') {
+          this.total_cost = this.num * Number(this.price)
+        }
       },
       costSum () {
         if (this.num !== 0 && this.price !== '') {
@@ -135,7 +134,8 @@ export default {
           // target_times:this.target_times,
           total_cost: this.total_cost,
           tasks_name: this.type,
-          cost: this.num
+          cost: this.price,
+          complete_cost: this.price * 0.5
         }
         sumbitTasks(data).then(res => {
           console.log(res)

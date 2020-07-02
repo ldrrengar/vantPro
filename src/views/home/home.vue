@@ -6,19 +6,22 @@
     />
     <van-swipe :autoplay="3000"
                indicator-color="white">
-      <!--<van-swipe-item v-for="(banner, index) in shopInfos.banner"-->
-                      <!--:key="index">-->
-        <!--<img src="http://yinzan.net/static/images/head1.png"-->
-             <!--style="height:230px">-->
-      <!--</van-swipe-item>-->
-      <van-swipe-item>
-        <div class="bg">
-        <marquee style="color: #ffffff;" direction="left" behavior="scroll" scrollamount="10" scrolldelay="0" loop="-1" hspace="10" vspace="10">
-        <!---->
-          <!--&#45;&#45;&gt;-->
-        </marquee>
+      <van-swipe-item v-for="(banner, index) in bannerList"
+                      :key="index">
+<!--        <div class="bg" :style="{background-image: url(' + banner.image + ') no-repeat}"></div>-->
+        <div class="bg" :style="{ 'background-image': 'url(' + banner.image + ')'}">
         </div>
+<!--        <img :src="banner.image"-->
+<!--             style="height:230px">-->
       </van-swipe-item>
+<!--      <van-swipe-item>-->
+<!--        <div class="bg">-->
+<!--        <marquee style="color: #ffffff;" direction="left" behavior="scroll" scrollamount="10" scrolldelay="0" loop="-1" hspace="10" vspace="10">-->
+<!--        &lt;!&ndash;&ndash;&gt;-->
+<!--          &lt;!&ndash;&#45;&#45;&gt;&ndash;&gt;-->
+<!--        </marquee>-->
+<!--        </div>-->
+<!--      </van-swipe-item>-->
     </van-swipe>
     <van-row class="order_status">
       <van-col span="6">
@@ -98,24 +101,29 @@ import {
   NoticeBar
 } from 'vant'
 import scrollFixed from '@/mixin/scroll-fixed'
+import { getBanner } from '@/api/loginapi'
     export default {
       name: 'home',
       mixins: [scrollFixed],
 
       data () {
         return {
-          shopInfos: [],
+          bannerList: [],
           isLoading: false
         }
       },
 
       created () {
         this.initViews()
-        this.shopInfos = [{
-          banner: [{
-            url: '../../assets/images/head1.png'
-          }]
-        }]
+        getBanner().then(res => {
+          console.log(res)
+          this.bannerList = res.data
+        })
+        // this.shopInfos = [{
+        //   banner: [{
+        //     url: '../../assets/images/head1.png'
+        //   }]
+        // }]
       },
       methods: {
         changeTabbar (o) {
@@ -220,7 +228,7 @@ import scrollFixed from '@/mixin/scroll-fixed'
   width: 100%;
   height: 140px;
   height: 24vh;
-  background: url(../../assets/images/head1.png) no-repeat;
+  /*background: url(../../assets/images/head1.png) no-repeat;*/
   background-size: 100% 24vh;
   font-size: 12px;
 }

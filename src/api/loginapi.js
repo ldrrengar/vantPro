@@ -12,7 +12,7 @@ export const authLoginByAccount = (data) => {
 
 export const getTasks = (data) => {
   return request({
-    url: `/api/api/tasks/?page=${data.page}&page_size=${data.pageSize}&type=${data.type}&state=1`,
+    url: `/api/api/tasks/?page=${data.page}&page_size=${data.pageSize}&type=${data.type}&state=2`,
     method: 'get'
   })
 }
@@ -88,5 +88,29 @@ export const getCapital = (data) => {
   return request({
     url: `/api/api/capital/?page=${data.page}&page_size=${data.pageSize}&type=${data.type}&user=${data.user}`,
     method: 'get'
+  })
+}
+
+export const getBanner = (data) => {
+  return request({
+    url: 'api/api/banner/',
+    method: 'get'
+  })
+}
+
+export const pickTask = (data) => {
+  return request({
+    url: '/api/api/complete_tasks/',
+    method: 'post',
+    data
+  })
+}
+
+export const submitImage = (data) => {
+  return request({
+    url: '/api/api/image/',
+    method: 'post',
+    headers: {"Content-Type": "application/json"},
+    data
   })
 }
