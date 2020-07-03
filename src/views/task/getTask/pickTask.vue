@@ -76,7 +76,7 @@ export default {
   methods: {
     afterRead (file) {
       const param = new FormData()
-      param.append("url", file.file)
+      param.append('url', file.file)
       console.log(param)
       console.log(222)
       submitImage(param).then(res => {

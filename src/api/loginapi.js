@@ -110,7 +110,7 @@ export const submitImage = (data) => {
   return request({
     url: '/api/api/image/',
     method: 'post',
-    headers: {"Content-Type": "application/json"},
+    headers: {'Content-Type': 'application/json'},
     data
   })
 }
