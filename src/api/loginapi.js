@@ -114,3 +114,10 @@ export const submitImage = (data) => {
     data
   })
 }
+
+export const homePage = (data) => {
+  return request({
+    url: '/api/api/homepage/',
+    method: 'get'
+  })
+}

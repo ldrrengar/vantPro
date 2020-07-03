@@ -63,15 +63,15 @@
     </van-row>
     <van-row class="taskRow" style="background: #5c85fb; color: #ffffff;">
       <van-col span="6"><van-icon class="iconfont icon-ziyuan" style="font-size: 25px;"/></van-col>
-      <van-col span="18" style="text-align: left;">今日任务数: 518000</van-col>
+      <van-col span="18" style="text-align: left;">今日任务数: {{this.homepage.tasks}}</van-col>
     </van-row>
     <van-row class="taskRow" style="background: #0ed4c5; color: #ffffff;">
       <van-col span="6"><van-icon class="iconfont icon-ziyuan" style="font-size: 25px;"/></van-col>
-      <van-col span="18" style="text-align: left;">今日用户数: 52756</van-col>
+      <van-col span="18" style="text-align: left;">今日用户数: {{this.homepage.users}}</van-col>
     </van-row>
     <van-row class="taskRow" style="background: #ff655b; color: #ffffff;">
       <van-col span="6"><van-icon class="iconfont icon-ziyuan" style="font-size: 25px;"/></van-col>
-      <van-col span="18"  style="text-align: left;">今日已完成: 2865589</van-col>
+      <van-col span="18"  style="text-align: left;">今日已完成: {{this.homepage.completes}}</van-col>
     </van-row>
     <van-row class="taskRow" style="background: #ffa72d; color: #ffffff;">
       <van-col span="6"><van-icon class="iconfont icon-ziyuan" style="font-size: 25px;"/></van-col>
@@ -101,7 +101,7 @@ import {
   NoticeBar
 } from 'vant'
 import scrollFixed from '@/mixin/scroll-fixed'
-import { getBanner } from '@/api/loginapi'
+import { getBanner, homePage } from '@/api/loginapi'
     export default {
       name: 'home',
       mixins: [scrollFixed],
@@ -109,7 +109,8 @@ import { getBanner } from '@/api/loginapi'
       data () {
         return {
           bannerList: [],
-          isLoading: false
+          isLoading: false,
+          homepage: []
         }
       },
 
@@ -118,6 +119,12 @@ import { getBanner } from '@/api/loginapi'
         getBanner().then(res => {
           console.log(res)
           this.bannerList = res.data
+        })
+
+        homePage().then(res => {
+          console.log(11111)
+          console.log(res)
+          this.homepage = res.data[0].ThreeData
         })
         // this.shopInfos = [{
         //   banner: [{
