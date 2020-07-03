@@ -8,7 +8,7 @@
           <div>MR.k(青铜)</div>
         </van-col>
         <van-col span="3" style="margin-top: 15px;text-align: end;">
-          <van-icon name="set" style="font-size: 20px;"/>
+          <router-link :to="{name: 'setting'}"><van-icon name="set" style="font-size: 20px;" /></router-link>
           <!--<van-icon class="iconfont icon-feiji" style="font-size: 20px;"/>-->
         </van-col>
       </van-row>
@@ -64,7 +64,7 @@
       <van-cell-group>
         <van-cell icon="shoucang" title="我的任务" to="/user/collect" isLink/>
         <van-cell icon="dingwei" title="开通会员" to="/user/address" isLink/>
-        <van-cell icon="kefu" title="联系客服" to="/user/server" isLink/>
+        <van-cell icon="kefu" title="联系客服" to="/conttactCustomer" isLink/>
       </van-cell-group>
     </div>
   </div>

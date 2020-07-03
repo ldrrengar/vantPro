@@ -45,5 +45,27 @@ export default [
     components: {
       default: () => import('@/views/user/myInvitation/myInvitation')
     }
+  },
+  {
+    path: '/conttactCustomer',
+    name: 'conttactCustomer',
+    meta: {
+      showHeader: true,
+      title: '联系客服'
+    },
+    components: {
+      default: () => import('@/views/user/conttactCustomer/conttactCustomer')
+    }
+  },
+  {
+    path: '/setting',
+    name: 'setting',
+    meta: {
+      showHeader: true,
+      title: '用户设置'
+    },
+    components: {
+      default: () => import('@/views/user/setting/setting')
+    }
   }
 ]
