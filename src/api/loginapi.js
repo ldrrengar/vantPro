@@ -121,3 +121,11 @@ export const homePage = (data) => {
     method: 'get'
   })
 }
+
+
+export const grtUser = (data) => {
+  return request({
+    url: `/api/api/user_balance/?username=${data.user}`,
+    method: 'get'
+  })
+}

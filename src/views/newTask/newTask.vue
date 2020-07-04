@@ -72,7 +72,7 @@
 import { Form, Field, Picker, Popup, Button } from 'vant'
 import field from '@/components/field/'
 import fieldGroup from '@/components/field-group/'
-import { getTasksType, sumbitTasks } from '@/api/loginapi'
+import { sumbitTasks } from '@/api/loginapi'
 export default {
     name: 'newTask',
     data () {
@@ -105,11 +105,11 @@ export default {
         showPicker1: false
       }
     },
-  created () {
-    getTasksType().then(res => {
-      this.columns1 = res.data.results
-    })
-  },
+  // created () {
+  //   getTasksType().then(res => {
+  //     this.columns1 = res.data.results
+  //   })
+  // },
     methods: {
       onConfirm (value) {
         this.target_times = value.text

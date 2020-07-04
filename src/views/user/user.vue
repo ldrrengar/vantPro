@@ -4,8 +4,8 @@
       <van-row class="home-top-base">
         <van-col span="6" class="base-logo"></van-col>
         <van-col span="15" class="base-nick">
-          <div>18864835725</div>
-          <div>MR.k(青铜)</div>
+          <div>{{this.userdata.username}}</div>
+          <div>{{this.userdata.name}}</div>
         </van-col>
         <van-col span="3" style="margin-top: 15px;text-align: end;">
           <router-link :to="{name: 'setting'}"><van-icon name="set" style="font-size: 20px;" /></router-link>
@@ -13,22 +13,22 @@
         </van-col>
       </van-row>
       <van-row class="home-top-acc">
-        <div class="acc-lave">账户余额：<span style="color: #c51f1fab;">1.00</span><van-button type="primary" style="float: right;" size="mini" @click="toOrderDetail(task.tasks_id)">提现</van-button></div>
+        <div class="acc-lave">账户余额：<span style="color: #c51f1fab;">{{this.userdata.balance}}</span><van-button type="primary" style="float: right;" size="mini" @click="toOrderDetail(task.tasks_id)">提现</van-button></div>
         <van-row class="acc-list">
           <van-col span="6">
-            <div style="text-align: center; color: #f1bd01;font-size: 12px;">1.00</div>
+            <div style="text-align: center; color: #f1bd01;font-size: 12px;">{{this.userdata.task_reward}}</div>
             <div style="font-size: 12px; text-align: center;">任务奖励</div>
           </van-col>
           <van-col span="6">
-            <div style="text-align: center; color: #f1bd01;font-size: 12px;">0.00</div>
+            <div style="text-align: center; color: #f1bd01;font-size: 12px;">{{this.userdata.commission}}</div>
             <div style="font-size: 12px; text-align: center;">套餐提成</div>
           </van-col>
           <van-col span="6">
-            <div style="text-align: center; color: #f1bd01;font-size: 12px;">0.00</div>
+            <div style="text-align: center; color: #f1bd01;font-size: 12px;">{{this.userdata.team_income}}</div>
             <div style="font-size: 12px; text-align: center;">团队收益</div>
           </van-col>
           <van-col span="6">
-            <div style="text-align: center; color: #f1bd01;font-size: 12px;">1.00</div>
+            <div style="text-align: center; color: #f1bd01;font-size: 12px;">{{this.userdata.balance_today}}</div>
             <div style="font-size: 12px; text-align: center;">今日收益</div>
           </van-col>
         </van-row>
@@ -37,7 +37,7 @@
     <van-row class="home-top-acc" style="margin: 20px; border-radius: 10px; background: #f6b806; height: 100px;">
       <van-col span="12" style="color: #ffffff" @click="toTask(0)">
         <div style="text-align: center; font-size: 12px;">普通任务</div>
-        <div style="text-align: center; font-size: 22px;">2/2</div>
+        <div style="text-align: center; font-size: 22px;">{{this.userdata.common_task_complete}}/{{this.userdata.common_task_num}}</div>
         <div style="text-align: center; font-size: 12px;">今日已做/今日可做</div>
       </van-col>
       <div style="position: absolute;
@@ -48,7 +48,7 @@
     top: 20px;"></div>
       <van-col span="12" style="color: #ffffff" @click="toTask(1)">
         <div style="text-align: center; font-size: 12px;">会员任务</div>
-        <div style="text-align: center; font-size: 22px;">2/2</div>
+        <div style="text-align: center; font-size: 22px;">{{this.userdata.member_task_complete}}/{{this.userdata.member_task_num}}</div>
         <div style="text-align: center; font-size: 12px;">今日已做/今日可做</div>
       </van-col>
     </van-row>
@@ -72,6 +72,9 @@
 
 <script>
 import { Tab, Tabs, Panel, Card, List, Tag, Row, Col, Image, Divider, Button } from 'vant'
+import { grtUser } from '@/api/loginapi'
+import { getLocalStorage } from '@/utils/local-storage'
+
 export default {
     name: 'user',
     components: {
@@ -87,6 +90,21 @@ export default {
       [Divider.name]: Divider,
       [Button.name]: Button
     },
+  data () {
+    return {
+      userdata: []
+    }
+  },
+  created () {
+    let data = {
+      user: getLocalStorage(['username']).username
+    }
+    console.log(getLocalStorage('username'))
+    grtUser(data).then(res => {
+      console.log(res)
+      this.userdata = res.data[0]
+    })
+  },
     methods: {
       // 进入任务页面
       toTask (val) {
