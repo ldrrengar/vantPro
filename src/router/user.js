@@ -67,5 +67,15 @@ export default [
     components: {
       default: () => import('@/views/user/setting/setting')
     }
+  },
+  {
+    path: '/myTask',
+    name: 'myTask',
+    meta: {
+      showHeader: false
+    },
+    components: {
+      default: () => import('@/views/user/myTask/myTask')
+    }
   }
 ]

@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-top: 20px;">
+  <div style="margin-top: 50px;">
     <van-form @submit="onSubmit">
       <van-field
         v-model="url"

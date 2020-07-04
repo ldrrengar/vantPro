@@ -62,7 +62,7 @@
     </div>
     <div class="user_module" style="margin: 10px 0;">
       <van-cell-group>
-        <van-cell icon="shoucang" title="我的任务" to="/user/collect" isLink/>
+        <van-cell icon="shoucang" title="我的任务" to="/myTask" isLink/>
         <van-cell icon="dingwei" title="开通会员" to="/user/address" isLink/>
         <van-cell icon="kefu" title="联系客服" to="/conttactCustomer" isLink/>
       </van-cell-group>
