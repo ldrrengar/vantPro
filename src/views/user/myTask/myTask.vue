@@ -20,7 +20,7 @@
               编号: {{ task.tasks_id }}
             </van-col>
             <van-col span="6" style="text-align: end;">
-              <span style="color: #07c160;">{{ task.status}}</span>
+              <span style="color: #07c160;">{{ task.state}}</span>
             </van-col>
           </van-row>
           <van-divider style="margin: 6px 0;" />
@@ -30,13 +30,13 @@
                 <van-image :src="require('../../../assets/images/dy.png')" />
                 <div style="display: flex; flex-direction: column;margin-left: 8px; justify-content: center;">
                   <span style="font-size: 14px;">要求: {{ task.tasks_name }}</span>
-                  <span style="font-size: 14px; color: red;">目标: {{ task.target_times_task.completed_times }} &emsp;剩余: {{ task.target_times_task.completed_times }}</span>
+                  <span style="font-size: 14px; color: red;">目标: {{ task.target_times }} &emsp;剩余: {{ task.target_times - task.completed_times }}</span>
                 </div>
               </div>
             </van-col>
             <van-col span="6" style="text-align: end;">
-              <van-button type="primary" size="small" style="height: 20px;" v-show="task.status == '待支付'" @click="handlePay(task)">支付</van-button>
-              <van-button type="primary" size="small" style="height: 20px;" v-show="task.status == '待支付'" @click="handleDelete(task)">删除</van-button>
+              <van-button type="primary" size="small" style="height: 20px;" v-show="task.state == '未支付'" @click="handlePay(task)">支付</van-button>
+<!--              <van-button type="primary" size="small" style="height: 20px;" v-show="task.state == '未支付'" @click="handleDelete(task)">删除</van-button>-->
             </van-col>
           </van-row>
         </van-row>
@@ -53,6 +53,7 @@
 
 <script>
 import { Tab, Tabs, Panel, Card, List, Tag, Row, Col, Image, Divider, Button, NavBar, Dialog } from 'vant'
+import { myTasks, deleteMyTasks } from '@/api/loginapi'
 export default {
   name: 'myTask',
   components: {
@@ -81,31 +82,24 @@ export default {
   },
   created () {
     this.taskList = [
-      {
-        tasks_id: 222,
-        tasks_name: '关注',
-        target_times_task: {
-          completed_times: 1000
-        },
-        status: '待支付'
-      },
-      {
-        tasks_id: 222,
-        tasks_name: '关注',
-        target_times_task: {
-          completed_times: 1000
-        },
-        status: '审核中'
-      },
-      {
-        tasks_id: 222,
-        tasks_name: '关注',
-        target_times_task: {
-          completed_times: 1000
-        },
-        status: '进行中'
-      }
     ]
+    this.loading = false
+    this.finished = true
+    this.page++
+    let data = {
+      page: this.page,
+      pageSize: this.limit
+    }
+    myTasks(data).then(res => {
+      console.log(res)
+      this.taskList = [...this.taskList, ...res.data.results]
+      this.loading = false
+      if (res.data.next === null) {
+        this.finished = true
+      } else {
+        this.finished = false
+      }
+    })
   },
   methods: {
     goBack () {
@@ -118,20 +112,6 @@ export default {
     getTaskList () {
       this.page++
       this.finished = true
-      // let data = {
-      //   page: this.page,
-      //   pageSize: this.limit,
-      //   type: this.activeIndex
-      // }
-      // getTasks(data).then(res => {
-      //   this.taskList = [...this.taskList, ...res.data.results]
-      //   this.loading = false
-      //   if (res.data.next === null) {
-      //     this.finished = true
-      //   } else {
-      //     this.finished = false
-      //   }
-      // })
     },
     // 删除任务
     handleDelete (values) {
@@ -140,7 +120,11 @@ export default {
         title: '温馨提示',
         message: '删除后将无法恢复，确定要执行吗'
       })
-        .then(() => {
+      let data = {
+        tasks_id: values.tasks_id,
+        state: "5"
+      }
+      deleteMyTasks(data).then(() => {
           // on confirm
         })
         .catch(() => {

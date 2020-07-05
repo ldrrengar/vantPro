@@ -14,7 +14,7 @@
             {{ team.name }}
           </van-col>
           <van-col span="6" style="text-align: end;">
-            <span style="color: red;">{{ team.member }}</span>
+            <span style="color: red;">{{ team.member_level }}</span>
           </van-col>
         </van-row>
       </van-row>
@@ -30,6 +30,7 @@
 
 <script>
 import { Tab, Tabs, Panel, Card, List, Tag, Row, Col, Image, Divider, Button } from 'vant'
+import { myTeam } from '@/api/loginapi'
 export default {
   name: 'myTeam',
   components: {
@@ -55,19 +56,44 @@ export default {
     }
   },
   created () {
-    this.teamList = [{
-      name: '用户9527',
-      member: '青铜'
-    }, {
-      name: '用户8024',
-      member: '白金'
-    }]
+    this.teamList = []
+    this.loading = false
+    this.finished = true
+    this.page++
+    let data = {
+      page: this.page,
+      pageSize: this.limit
+    }
+    myTeam(data).then(res => {
+      console.log(res)
+      this.teamList = [...this.teamList, ...res.data.results]
+      this.loading = false
+      if (res.data.next === null) {
+        this.finished = true
+      } else {
+        this.finished = false
+      }
+    })
   },
   methods: {
-    getTeamList () {
-      this.loading = false
-      this.finished = true
-    }
+    // getTeamList () {
+    //   this.loading = false
+    //   this.finished = true
+    //   this.page++
+    //   let data = {
+    //     page: this.page,
+    //     pageSize: this.limit
+    //   }
+    //   myTeam(data).then(res => {
+    //     this.teamList = [...this.teamList, ...res.data.results]
+    //     this.loading = false
+    //     if (res.next === null) {
+    //       this.finished = true
+    //     } else {
+    //       this.finished = false
+    //     }
+    //   })
+    // }
   }
 }
 </script>

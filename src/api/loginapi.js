@@ -147,3 +147,28 @@ export const updateZFB = (data) => {
     data
   })
 }
+
+
+export const myTeam = (data) => {
+  return request({
+    url: `/api/api/team/?page=${data.page}&page_size=${data.pageSize}`,
+    method: 'get'
+  })
+}
+
+
+export const myTasks = (data) => {
+  return request({
+    url: `/api/api/my_tasks/?page=${data.page}&page_size=${data.pageSize}`,
+    method: 'get'
+  })
+}
+
+
+export const deleteMyTasks = (data) => {
+  return request({
+    url: `/api/api/tasks/${data.tasks_id}/`,
+    method: 'patch',
+    data
+  })
+}
