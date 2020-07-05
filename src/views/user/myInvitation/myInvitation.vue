@@ -54,8 +54,8 @@ export default {
       downFile () {
       },
       creatQrCode () {
-        let width = document.documentElement.clientWidth
-        width = width * 0.32
+        // let width = document.documentElement.clientWidth
+        // width = width * 0.32
         let qrcode = new QRCode(this.$refs.qrCodeUrl, {
           text: 'http://39.108.145.250:8081/#/login/register?username=' + window.localStorage.getItem('username'), // 需要转换为二维码的内容
           width: '120',

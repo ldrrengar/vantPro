@@ -122,7 +122,7 @@ export default {
       })
       let data = {
         tasks_id: values.tasks_id,
-        state: "5"
+        state: '5'
       }
       deleteMyTasks(data).then(() => {
           // on confirm

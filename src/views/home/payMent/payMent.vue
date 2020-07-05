@@ -116,14 +116,8 @@ export default {
       console.log(222)
       submitImage(param).then(res => {
         this.imageList.push(res.data.id)
-        console.log(this.imageList)
-        // this.fileList = [...this.fileList, ...res.data.id]
+        this.$router.push({name: 'home'})
       })
-      // submitImage(param).then(res => {
-      //   this.imageList.push(res.data.id)
-      //   console.log(this.imageList)
-      //   // this.fileList = [...this.fileList, ...res.data.id]
-      // })
     },
     copy () {
       let onInput = document.createElement('input')
