@@ -67,7 +67,9 @@ export default {
         name: this.username
       }
       register(data).then(res => {
-        console.log(res)
+        if (res.status === 201) {
+          this.$router.replace({name: 'login'})
+        }
       })
     },
     getCode () {
