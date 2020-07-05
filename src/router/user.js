@@ -77,5 +77,16 @@ export default [
     components: {
       default: () => import('@/views/user/myTask/myTask')
     }
+  },
+  {
+    path: '/myTeam',
+    name: 'myTeam',
+    meta: {
+      showHeader: true,
+      title: '我的团队'
+    },
+    components: {
+      default: () => import('@/views/user/myTeam/myTeam')
+    }
   }
 ]

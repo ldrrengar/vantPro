@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="background: #ffffff;">
     <van-nav-bar title="我的邀请码" left-text="返回" right-text="下载" left-arrow @click-left="goBack" @click-right="downFile" fixed>
       <!--<template #right>-->
         <!--<van-icon name="leimu" size="18" />-->
@@ -14,11 +14,11 @@
         <!--<div id="qrcode" class="qrcode"></div>-->
       <!--</div>-->
     <!--</div>-->
-    <div class="creat-img" ref="qrCodeUrl" style="margin-top: 44px;">
-      <img src="../../../assets/images/qrcode.png" style="width: 100%;">
+    <div class="creat-img" ref="qrCodeUrl" style="margin-top: 44px; text-align: center;">
+      <img src="../../../assets/images/qrcode.png" style="width: 320px;">
       <div id="qrCode" class="qrcode"></div>
     </div>
-    <div style="margin-top: 44px;" class="qrcode" ref="qrCodeUrl"></div>
+    <div class="qrcode" ref="qrCodeUrl"></div>
   </div>
 </template>
 
@@ -58,8 +58,8 @@ export default {
         width = width * 0.32
         let qrcode = new QRCode(this.$refs.qrCodeUrl, {
           text: 'https://www.baidu.com', // 需要转换为二维码的内容
-          width: width,
-          height: width,
+          width: '120',
+          height: '120',
           colorDark: '#000000',
           colorLight: '#ffffff',
           correctLevel: QRCode.CorrectLevel.H
@@ -73,7 +73,6 @@ export default {
           this.imgUrl = imgUrl
           let imgData = canvas.toDataURL('image/jpeg')
           this.imgData = imgData
-          console.log(imgData)
         })
       },
       base64ToBlob (code) {
@@ -101,7 +100,6 @@ export default {
   }
   .creat-img{
     width: 100%;
-    height: 100%;
     img{
       z-index: 3;
     }
@@ -112,5 +110,12 @@ export default {
       margin-left: -64px;
       z-index: 5;
     }
+  }
+  .qrcode {
+    margin-top: -195px;
+    padding-top: 0.21333333rem;
+    padding-bottom: 0.21333333rem;
+    display: flex;
+    justify-content: center;
   }
 </style>

@@ -57,7 +57,7 @@
         <van-cell icon="shoucang" title="提现记录" to="/withdraw" isLink/>
         <van-cell icon="dingwei" title="资金明细" to="/fundDetail" isLink/>
         <van-cell icon="kefu" title="我的邀请码" to="/myInvitation" isLink/>
-        <van-cell icon="kefu" title="我的团队" to="/user/server" isLink/>
+        <van-cell icon="kefu" title="我的团队" to="/myTeam" isLink/>
       </van-cell-group>
     </div>
     <div class="user_module" style="margin: 10px 0;">

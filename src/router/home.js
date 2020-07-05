@@ -51,5 +51,16 @@ export default [
       showHeader: true,
       title: '开通会员'
     }
+  },
+  {
+    path: '/payMent',
+    name: 'payMent',
+    components: {
+      default: () => import('@/views/home/payMent/payMent')
+    },
+    meta: {
+      showHeader: true,
+      title: '转账提交'
+    }
   }
 ]
