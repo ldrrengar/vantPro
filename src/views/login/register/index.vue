@@ -53,7 +53,9 @@ export default {
       invitation_name: ''
     }
   },
-
+  created () {
+    this.invitation_name = this.$route.query.username
+  },
   methods: {
     submitCode () {
       // this.$router.push({ name: 'forgetReset' })
