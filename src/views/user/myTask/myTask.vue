@@ -133,6 +133,13 @@ export default {
     },
     // 付钱
     handlePay (values) {
+      this.$router.push({
+        name: 'payMent',
+        query: {
+          tasks_id: values.tasks_id,
+          total_cost: values.total_cost
+        }
+      })
       console.log(values)
     }
   }
