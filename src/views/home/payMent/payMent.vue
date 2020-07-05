@@ -57,6 +57,7 @@
 
 <script>
 import { Form, Field, Popup, Button, Dialog, Notify, Uploader, Toast } from 'vant'
+import { submitImage, Transfer } from '@/api/loginapi'
 export default {
   name: 'payMent',
   components: {
@@ -74,22 +75,50 @@ export default {
       accountName: '邱斌',
       muchMoney: '',
       payAccount: '',
+      tasks_id: '',
       payName: '',
       payType: '',
-      fileList: []
+      fileList: [],
+      imageList: []
     }
   },
   created () {
     console.log(this.$route.query)
     this.muchMoney = this.$route.query.total_cost
+    this.tasks_id = this.$route.query.tasks_id
   },
   methods: {
     handleSumbit () {
+      let data = {
+        money: this.muchMoney,
+        cheques_account: this.account,
+        cheques_name: this.accountName,
+        payment_account: this.payAccount,
+        payment_name: this.payName,
+        tasks_id: this.tasks_id,
+        image: this.imageList
+      }
+      Transfer(data).then(res => {
+        console.log(res)
+      })
+      Dialog.alert({
+        title: '提交成功',
+        message: '您的转账已经成功提交，请等待工作人员的审核'
+      })
     },
     afterRead (file) {
+      // const param = new FormData()
+      // param.append('url', file.file)
+      // console.log(param)
       const param = new FormData()
       param.append('url', file.file)
       console.log(param)
+      console.log(222)
+      submitImage(param).then(res => {
+        this.imageList.push(res.data.id)
+        console.log(this.imageList)
+        // this.fileList = [...this.fileList, ...res.data.id]
+      })
       // submitImage(param).then(res => {
       //   this.imageList.push(res.data.id)
       //   console.log(this.imageList)

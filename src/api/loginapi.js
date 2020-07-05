@@ -172,3 +172,12 @@ export const deleteMyTasks = (data) => {
     data
   })
 }
+
+
+export const Transfer = (data) => {
+  return request({
+    url: '/api/api/transfer/',
+    method: 'post',
+    data
+  })
+}

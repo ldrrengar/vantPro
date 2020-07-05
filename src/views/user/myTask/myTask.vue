@@ -20,7 +20,7 @@
               编号: {{ task.tasks_id }} <span style="color: red;">&emsp;￥{{ task.total_cost }}</span>
             </van-col>
             <van-col span="6" style="text-align: end;">
-              <span style="color: #07c160;">{{ task.state}}</span>
+              <span style="color: #07c160;">{{ task.state }}</span>
             </van-col>
           </van-row>
           <van-divider style="margin: 6px 0;" />
