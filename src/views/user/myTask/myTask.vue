@@ -17,7 +17,7 @@
         >
           <van-row style="background: #FFFFFF; font-size: 18px; height: 5vh; line-height: 5vh; font-weight: 700; padding: 0 10px;">
             <van-col span="18">
-              编号: {{ task.tasks_id }}
+              编号: {{ task.tasks_id }} <span style="color: red;">&emsp;￥{{ task.total_cost }}</span>
             </van-col>
             <van-col span="6" style="text-align: end;">
               <span style="color: #07c160;">{{ task.state}}</span>
