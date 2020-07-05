@@ -129,3 +129,21 @@ export const grtUser = (data) => {
     method: 'get'
   })
 }
+
+
+export const updatePassword = (data) => {
+  return request({
+    url: `/api/api/update_password/${data.username}/`,
+    method: 'patch',
+    data
+  })
+}
+
+
+export const updateZFB = (data) => {
+  return request({
+    url: `/api/api/user/${data.username}/`,
+    method: 'patch',
+    data
+  })
+}

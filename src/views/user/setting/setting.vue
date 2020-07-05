@@ -1,47 +1,47 @@
 <template>
   <div style="margin-top: 44px;">
     <van-cell-group style="margin-top: 10px;">
-      <van-cell icon="shoucang" title="修改支付密码" is-link @click="isPayPassword = true" />
+<!--      <van-cell icon="shoucang" title="修改支付密码" is-link @click="isPayPassword = true" />-->
       <van-cell icon="dingwei" title="修改收款支付宝账号" is-link @click="changePayAccount = true"/>
-      <van-cell icon="kefu" title="找回支付密码" is-link @click="findPayAccount = true"/>
+<!--      <van-cell icon="kefu" title="重置支付密码" is-link @click="findPayAccount = true"/>-->
       <van-cell icon="kefu" title="修改密码" is-link @click="changePassWord = true"/>
       <van-cell icon="kefu" title="退出登录" @click="isExit"/>
     </van-cell-group>
-    <van-popup
-      v-model="isPayPassword"
-      closeable
-      position="bottom"
-      :style="{ height: '40%' }"
-    >
-      <van-form @submit="submitPayPassword">
-        <van-field
-          v-model="oldPayPassword"
-          type="password"
-          name="oldPayPassword"
-          placeholder="请输入原支付密码"
-          :rules="[{ required: true, message: '请输入原支付密码' }]"
-        />
-        <van-field
-          v-model="newPayPassword"
-          type="password"
-          name="newPayPassword"
-          placeholder="请输入新支付密码"
-          :rules="[{ required: true, message: '请输入新支付密码' }]"
-        />
-        <van-field
-          v-model="aginPayPassword"
-          type="password"
-          name="aginPayPassword"
-          placeholder="请再次输入新支付密码"
-          :rules="[{ required: true, message: '请再次输入新支付密码' }]"
-        />
-        <div style="margin: 16px;">
-          <van-button block type="info" native-type="submit">
-            确定修改
-          </van-button>
-        </div>
-      </van-form>
-    </van-popup>
+<!--    <van-popup-->
+<!--      v-model="isPayPassword"-->
+<!--      closeable-->
+<!--      position="bottom"-->
+<!--      :style="{ height: '40%' }"-->
+<!--    >-->
+<!--      <van-form @submit="submitPayPassword">-->
+<!--        <van-field-->
+<!--          v-model="oldPayPassword"-->
+<!--          type="password"-->
+<!--          name="oldPayPassword"-->
+<!--          placeholder="请输入原支付密码"-->
+<!--          :rules="[{ required: true, message: '请输入原支付密码' }]"-->
+<!--        />-->
+<!--        <van-field-->
+<!--          v-model="newPayPassword"-->
+<!--          type="password"-->
+<!--          name="newPayPassword"-->
+<!--          placeholder="请输入新支付密码"-->
+<!--          :rules="[{ required: true, message: '请输入新支付密码' }]"-->
+<!--        />-->
+<!--        <van-field-->
+<!--          v-model="aginPayPassword"-->
+<!--          type="password"-->
+<!--          name="aginPayPassword"-->
+<!--          placeholder="请再次输入新支付密码"-->
+<!--          :rules="[{ required: true, message: '请再次输入新支付密码' }]"-->
+<!--        />-->
+<!--        <div style="margin: 16px;">-->
+<!--          <van-button block type="info" native-type="submit">-->
+<!--            确定修改-->
+<!--          </van-button>-->
+<!--        </div>-->
+<!--      </van-form>-->
+<!--    </van-popup>-->
     <van-popup
       v-model="changePayAccount"
       closeable
@@ -49,12 +49,12 @@
       :style="{ height: '50%' }"
     >
       <van-form @submit="submitAccount">
-        <van-field
-          v-model="payPassword"
-          name="payPassword"
-          placeholder="请输入支付密码"
-          :rules="[{ required: true, message: '请输入支付密码' }]"
-        />
+<!--        <van-field-->
+<!--          v-model="payPassword"-->
+<!--          name="payPassword"-->
+<!--          placeholder="请输入支付密码"-->
+<!--          :rules="[{ required: true, message: '请输入支付密码' }]"-->
+<!--        />-->
         <van-field
           v-model="accountName"
           name="accountName"
@@ -80,7 +80,7 @@
         </div>
       </van-form>
     </van-popup>
-    <van-popup
+    <!--<van-popup
       v-model="findPayAccount"
       closeable
       position="bottom"
@@ -114,7 +114,7 @@
           </van-button>
         </div>
       </van-form>
-    </van-popup>
+    </van-popup>-->
     <van-popup
       v-model="changePassWord"
       closeable
@@ -155,6 +155,8 @@
 
 <script>
 import { Form, Field, Popup, Button, Dialog, Notify } from 'vant'
+import { updatePassword, updateZFB } from '@/api/loginapi'
+import { getLocalStorage } from '@/utils/local-storage'
 export default {
     name: 'setting',
     components: {
@@ -202,6 +204,15 @@ export default {
           return
         }
         console.log(values)
+        let data = {
+          username: getLocalStorage(['username']).username,
+          ZFB_account: values.newAccount,
+          // target_times:this.target_times,
+          ZFB_name: values.accountName
+        }
+        updateZFB(data).then(res => {
+          console.log(res)
+        })
         this.newAccount = ''
         this.aginAccount = ''
         this.payPassword = ''
@@ -213,7 +224,7 @@ export default {
           Notify({ type: 'warning', message: '两次输入了支付密码不一致，请修改' })
           return
         }
-        console(values)
+        console.log(values)
         this.loginPassword = ''
         this.newPayPassword = ''
         this.aginPayPassword = ''
@@ -224,7 +235,16 @@ export default {
           Notify({ type: 'warning', message: '两次输入了支付密码不一致，请修改' })
           return
         }
-        console(values)
+        console.log(values)
+        let data = {
+          username: getLocalStorage(['username']).username,
+          old_password: values.loginPassword,
+          // target_times:this.target_times,
+          password: values.newPassword
+        }
+        updatePassword(data).then(res => {
+          console.log(res)
+        })
         this.loginPassword = ''
         this.newPassword = ''
         this.aginPassword = ''
