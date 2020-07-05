@@ -40,5 +40,16 @@ export default [
       showHeader: true,
       title: '公告详情'
     }
+  },
+  {
+    path: '/member',
+    name: 'member',
+    components: {
+      default: () => import('@/views/home/member/member')
+    },
+    meta: {
+      showHeader: true,
+      title: '开通会员'
+    }
   }
 ]

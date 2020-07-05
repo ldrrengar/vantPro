@@ -37,13 +37,13 @@
         <div>新手指南</div>
       </van-col>
       <van-col span="6" @click="$router.push({path: '/myInvitation'})">
-        <div class="order_status_icon" style="background: #f59a08; color: #ffffff;" @click="$router.push({path: '/user/order/list/3'})">
+        <div class="order_status_icon" style="background: #f59a08; color: #ffffff;" @click="$router.push({path: '/myInvitation'})">
           <van-icon class="iconfont icon-yqhy"/>
         </div>
         <div>邀请好友</div>
       </van-col>
       <van-col span="6">
-        <div class="order_status_icon" style="background: #db3d3c; color: #ffffff;" @click="$router.push({path: '/user/order/list/4'})">
+        <div class="order_status_icon" style="background: #db3d3c; color: #ffffff;" @click="$router.push({path: '/member'})">
           <van-icon class="iconfont icon-ziyuan"/>
         </div>
         <div>开通会员</div>

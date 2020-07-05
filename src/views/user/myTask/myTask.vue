@@ -1,6 +1,10 @@
 <template>
   <div>
-    <van-nav-bar title="我的任务" left-text="返回" left-arrow @click-left="goBack" fixed/>
+    <van-nav-bar title="我的任务" left-text="返回" left-arrow @click-left="goBack" right-text="新增" @click-right="handleAdd" fixed />
+      <!--<template #right>-->
+        <!--<div @click="handleAdd"><van-icon name="add" size="18" /></div>-->
+      <!--</template>-->
+    <!--</van-nav-bar>-->
     <div class="order_list" style="margin-top: 44px;">
       <van-list v-model="loading"
                 :finished="finished"
@@ -48,7 +52,7 @@
 </template>
 
 <script>
-import { Tab, Tabs, Panel, Card, List, Tag, Row, Col, Image, Divider, Button, NavBar } from 'vant'
+import { Tab, Tabs, Panel, Card, List, Tag, Row, Col, Image, Divider, Button, NavBar, Dialog } from 'vant'
 export default {
   name: 'myTask',
   components: {
@@ -63,7 +67,8 @@ export default {
     [Image.name]: Image,
     [Divider.name]: Divider,
     [Button.name]: Button,
-    [NavBar.name]: NavBar
+    [NavBar.name]: NavBar,
+    Dialog
   },
   data () {
     return {
@@ -106,6 +111,10 @@ export default {
     goBack () {
       this.$router.back(-1)
     },
+    // 跳转到新增页面
+    handleAdd () {
+      this.$router.push({name: 'newTask'})
+    },
     getTaskList () {
       this.page++
       this.finished = true
@@ -123,13 +132,25 @@ export default {
       //     this.finished = false
       //   }
       // })
+    },
+    // 删除任务
+    handleDelete (values) {
+      console.log(values)
+      Dialog.confirm({
+        title: '温馨提示',
+        message: '删除后将无法恢复，确定要执行吗'
+      })
+        .then(() => {
+          // on confirm
+        })
+        .catch(() => {
+          // on cancel
+        })
+    },
+    // 付钱
+    handlePay (values) {
+      console.log(values)
     }
-  },
-  // 删除任务
-  handleDelete (values) {
-  },
-  // 付钱
-  handlePay (valuse) {
   }
 }
 </script>
