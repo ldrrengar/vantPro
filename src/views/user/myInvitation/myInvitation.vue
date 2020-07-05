@@ -1,6 +1,6 @@
 <template>
   <div style="background: #ffffff;">
-    <van-nav-bar title="我的邀请码" left-text="返回" right-text="下载" left-arrow @click-left="goBack" @click-right="downFile" fixed>
+    <van-nav-bar title="我的邀请码" left-text="返回" right-text="" left-arrow @click-left="goBack" @click-right="downFile" fixed>
       <!--<template #right>-->
         <!--<van-icon name="leimu" size="18" />-->
       <!--</template>-->
@@ -57,7 +57,7 @@ export default {
         let width = document.documentElement.clientWidth
         width = width * 0.32
         let qrcode = new QRCode(this.$refs.qrCodeUrl, {
-          text: 'https://www.baidu.com', // 需要转换为二维码的内容
+          text: 'http://39.108.145.250:8081/#/login/register?username=' + window.localStorage.getItem('username'), // 需要转换为二维码的内容
           width: '120',
           height: '120',
           colorDark: '#000000',
