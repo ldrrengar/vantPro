@@ -8,6 +8,18 @@
           name="account"
         />
         <van-field
+          readonly
+          label="收款方姓名"
+          v-model="accountName"
+          name="accountName"
+        />
+        <van-field
+          readonly
+          label="转账金额"
+          v-model="muchMoney"
+          name="muchMoney"
+        />
+        <van-field
           v-model="payAccount"
           name="payAccount"
           label="付款账号"
@@ -59,6 +71,8 @@ export default {
   data () {
     return {
       account: '18179768000',
+      accountName: '邱斌',
+      muchMoney: '',
       payAccount: '',
       payName: '',
       payType: '',
@@ -66,6 +80,8 @@ export default {
     }
   },
   created () {
+    console.log(this.$route.query)
+    this.muchMoney = this.$route.query.total_cost
   },
   methods: {
     handleSumbit () {

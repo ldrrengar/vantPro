@@ -138,7 +138,13 @@ export default {
           complete_cost: this.price * 0.5
         }
         sumbitTasks(data).then(res => {
-          console.log(res)
+          this.$router.push({
+            name: 'payMent',
+            query: {
+              tasks_id: res.data.tasks_id,
+              total_cost: this.total_cost
+            }
+          })
         })
       }
     },
