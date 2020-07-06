@@ -86,6 +86,7 @@ export default {
       })
         .then(() => {
           // on confirm
+          this.$router.replace({name: 'payMent'})
         })
         .catch(() => {
           // on cancel
