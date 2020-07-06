@@ -9,7 +9,7 @@
     icon="comment"
     placeholder="请输入短信验证码"
   >
-    <div slot="rightIcon" @click="getCode" class="getCode">
+    <div slot="rightIcon" @click="getCode" class="getCode red">
       <countdown v-if="counting" :time="60000" @end="countdownend">
         <template slot-scope="props">{{ +props.seconds || 60 }}秒后获取</template>
       </countdown>
@@ -39,7 +39,7 @@ import header from '@/components/Header'
 import field from '@/components/field/'
 import fieldGroup from '@/components/field-group/'
 import { getCode, register } from '@/api/loginapi'
-
+import { CountDown } from 'vant'
 export default {
   data () {
     return {
@@ -78,6 +78,7 @@ export default {
       }
       getCode(data).then(res => {
         console.log(res)
+        this.counting = true
       })
     },
     countdownend () {
@@ -88,14 +89,17 @@ export default {
   components: {
     [field.name]: field,
     [fieldGroup.name]: fieldGroup,
-    'v-header': header
+    'v-header': header,
+    [CountDown.name]: CountDown
   }
 }
 </script>
 
 <style lang="scss" scoped>
 @import '../../../assets/scss/mixin';
-
+.red{
+  color: red;
+}
 div.foget_view {
   background-color: #fff;
   padding-top: 30px;
