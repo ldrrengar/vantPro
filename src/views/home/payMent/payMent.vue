@@ -101,9 +101,17 @@ export default {
       Transfer(data).then(res => {
         console.log(res)
       })
+      // Dialog.alert({
+      //   title: '提交成功',
+      //   message: '您的转账已经成功提交，请等待工作人员的审核'
+      // })
       Dialog.alert({
         title: '提交成功',
         message: '您的转账已经成功提交，请等待工作人员的审核'
+      }).then(() => {
+        this.$router.replace({
+          name: 'myTask'
+        })
       })
     },
     afterRead (file) {
@@ -116,7 +124,6 @@ export default {
       console.log(222)
       submitImage(param).then(res => {
         this.imageList.push(res.data.id)
-        this.$router.push({name: 'home'})
       })
     },
     copy () {
