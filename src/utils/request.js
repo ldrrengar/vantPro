@@ -1,10 +1,10 @@
 import axios from 'axios'
-import { Dialog } from 'vant'
+// import { Dialog } from 'vant'
 
 // create an axios instance
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API, // api 的 base_url
-  timeout: 5000 // request timeout
+  timeout: 50000 // request timeout
 })
 
 // request interceptor
@@ -58,10 +58,10 @@ service.interceptors.response.use(
     }
   }, error => {
     console.log('err' + error)// for debug
-    Dialog.alert({
-        title: '警告',
-        message: '登录连接超时'
-      })
+    // Dialog.alert({
+    //     title: '警告',
+    //     message: '登录连接超时'
+    //   })
     return Promise.reject(error)
   })
 

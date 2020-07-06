@@ -4,7 +4,7 @@ import request from '@/utils/request'
  */
 export const authLoginByAccount = (data) => {
   return request({
-    url: '/api/jwt-auth/',
+    url: '/jwt-auth/',
     method: 'post',
     data
   })
@@ -12,42 +12,42 @@ export const authLoginByAccount = (data) => {
 
 export const getTasks = (data) => {
   return request({
-    url: `/api/api/tasks/?page=${data.page}&page_size=${data.pageSize}&type=${data.type}&state=2`,
+    url: `/api/tasks/?page=${data.page}&page_size=${data.pageSize}&type=${data.type}&state=2`,
     method: 'get'
   })
 }
 
 export const getNews = (data) => {
   return request({
-    url: `/api/api/news/?page=${data.page}&page_size=${data.pageSize}`,
+    url: `/api/news/?page=${data.page}&page_size=${data.pageSize}`,
     method: 'get'
   })
 }
 
 export const getNewsDetails = (data) => {
   return request({
-    url: `/api/api/news/${data.id}/`,
+    url: `/api/news/${data.id}/`,
     method: 'get'
   })
 }
 
 export const getTasksType = (data) => {
   return request({
-    url: '/api/api/tasks_type/',
+    url: '/api/tasks_type/',
     method: 'get'
   })
 }
 
 export const getTasksSelfComplete = (data) => {
   return request({
-    url: `/api/api/complete_tasks/?page=${data.page}&page_size=${data.pageSize}&state=${data.state}&complete_user=${data.complete_user}`,
+    url: `/api/complete_tasks/?page=${data.page}&page_size=${data.pageSize}&state=${data.state}&complete_user=${data.complete_user}`,
     method: 'get'
   })
 }
 
 export const sumbitTasks = (data) => {
   return request({
-    url: '/api/api/tasks/',
+    url: '/api/tasks/',
     method: 'post',
     data
   })
@@ -55,7 +55,7 @@ export const sumbitTasks = (data) => {
 
 export const getCode = (data) => {
   return request({
-    url: '/api/api/verify/',
+    url: '/api/verify/',
     method: 'post',
     data
   })
@@ -63,7 +63,7 @@ export const getCode = (data) => {
 
 export const register = (data) => {
   return request({
-    url: '/api/api/register/',
+    url: '/api/register/',
     method: 'post',
     data
   })
@@ -71,7 +71,7 @@ export const register = (data) => {
 
 export const resetPassword = (data) => {
   return request({
-    url: `/api/api/reset_password/${data.username}/`,
+    url: `/api/reset_password/${data.username}/`,
     method: 'patch',
     data
   })
@@ -79,28 +79,28 @@ export const resetPassword = (data) => {
 
 export const getMoneyRecord = (data) => {
   return request({
-    url: `/api/api/money_record/?page=${data.page}&page_size=${data.pageSize}&state=${data.state}&user=${data.user}`,
+    url: `/api/money_record/?page=${data.page}&page_size=${data.pageSize}&state=${data.state}&user=${data.user}`,
     method: 'get'
   })
 }
 
 export const getCapital = (data) => {
   return request({
-    url: `/api/api/capital/?page=${data.page}&page_size=${data.pageSize}&type=${data.type}&user=${data.user}`,
+    url: `/api/capital/?page=${data.page}&page_size=${data.pageSize}&type=${data.type}&user=${data.user}`,
     method: 'get'
   })
 }
 
 export const getBanner = (data) => {
   return request({
-    url: 'api/api/banner/',
+    url: '/api/banner/',
     method: 'get'
   })
 }
 
 export const pickTask = (data) => {
   return request({
-    url: '/api/api/complete_tasks/',
+    url: '/api/complete_tasks/',
     method: 'post',
     data
   })
@@ -108,7 +108,7 @@ export const pickTask = (data) => {
 
 export const submitImage = (data) => {
   return request({
-    url: '/api/api/image/',
+    url: '/api/image/',
     method: 'post',
     headers: {'Content-Type': 'application/json'},
     data
@@ -117,7 +117,7 @@ export const submitImage = (data) => {
 
 export const homePage = (data) => {
   return request({
-    url: '/api/api/homepage/',
+    url: '/api/homepage/',
     method: 'get'
   })
 }
@@ -125,7 +125,7 @@ export const homePage = (data) => {
 
 export const grtUser = (data) => {
   return request({
-    url: `/api/api/user_balance/?username=${data.user}`,
+    url: `/api/user_balance/?username=${data.user}`,
     method: 'get'
   })
 }
@@ -133,7 +133,7 @@ export const grtUser = (data) => {
 
 export const updatePassword = (data) => {
   return request({
-    url: `/api/api/update_password/${data.username}/`,
+    url: `/api/update_password/${data.username}/`,
     method: 'patch',
     data
   })
@@ -142,7 +142,7 @@ export const updatePassword = (data) => {
 
 export const updateZFB = (data) => {
   return request({
-    url: `/api/api/user/${data.username}/`,
+    url: `/api/user/${data.username}/`,
     method: 'patch',
     data
   })
@@ -151,7 +151,7 @@ export const updateZFB = (data) => {
 
 export const myTeam = (data) => {
   return request({
-    url: `/api/api/team/?page=${data.page}&page_size=${data.pageSize}`,
+    url: `/api/team/?page=${data.page}&page_size=${data.pageSize}`,
     method: 'get'
   })
 }
@@ -159,7 +159,7 @@ export const myTeam = (data) => {
 
 export const myTasks = (data) => {
   return request({
-    url: `/api/api/my_tasks/?page=${data.page}&page_size=${data.pageSize}`,
+    url: `/api/my_tasks/?page=${data.page}&page_size=${data.pageSize}`,
     method: 'get'
   })
 }
@@ -167,7 +167,7 @@ export const myTasks = (data) => {
 
 export const deleteMyTasks = (data) => {
   return request({
-    url: `/api/api/tasks/${data.tasks_id}/`,
+    url: `/api/tasks/${data.tasks_id}/`,
     method: 'patch',
     data
   })
@@ -176,7 +176,7 @@ export const deleteMyTasks = (data) => {
 
 export const Transfer = (data) => {
   return request({
-    url: '/api/api/transfer/',
+    url: '/api/transfer/',
     method: 'post',
     data
   })

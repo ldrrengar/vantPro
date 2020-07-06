@@ -9,7 +9,7 @@
       <van-swipe-item v-for="(banner, index) in bannerList"
                       :key="index">
 <!--        <div class="bg" :style="{background-image: url(' + banner.image + ') no-repeat}"></div>-->
-        <div class="bg" :style="{ 'background-image': 'url(' + banner.image + ')'}">
+        <div class="bg" :style="{ 'background-image': 'url(' + banner.image.replace('127.0.0.1', '39.108.145.250') + ')'}">
         </div>
 <!--        <img :src="banner.image"-->
 <!--             style="height:230px">-->
@@ -117,7 +117,8 @@ import { getBanner, homePage } from '@/api/loginapi'
       created () {
         this.initViews()
         getBanner().then(res => {
-          console.log(res)
+          console.log(2222)
+          // console.log(res.data[0].image.replace('127.0.0.1', '39.108.145.250'))
           this.bannerList = res.data
         })
 
