@@ -6,10 +6,10 @@
         >
           <van-row style="background: #FFFFFF; font-size: 18px; height: 5vh; line-height: 5vh; font-weight: 700; padding: 0 10px;">
             <van-col span="18">
-             {{ member.memberName }}
+             {{ member.member_name }}
             </van-col>
             <van-col span="6" style="text-align: end;">
-              <span style="color: red;">￥{{ member.cost}}</span>
+              <span style="color: red;">￥{{ member.place}}</span>
             </van-col>
           </van-row>
           <van-divider style="margin: 6px 0;" />
@@ -17,8 +17,9 @@
             <van-col span="18">
               <div style="display: flex;">
                 <div style="display: flex; flex-direction: column;margin-left: 8px; justify-content: center;">
-                  <span style="font-size: 14px;">开通期限: 12个月</span>
-                  <span style="font-size: 14px; color: red;">每日可做任务: {{ member.number }}次</span>
+                  <span style="font-size: 14px;">开通期限: {{ member.time}} 年</span>
+                  <span style="font-size: 14px; color: red;">每日可做普通任务: {{ member.common_num }}次</span>
+                  <span style="font-size: 14px; color: red;">每日可做会员任务: {{ member.member_num }}次</span>
                 </div>
               </div>
             </van-col>
@@ -32,6 +33,7 @@
 
 <script>
 import { Tab, Tabs, Panel, Card, List, Tag, Row, Col, Image, Divider, Button, Dialog } from 'vant'
+import { getMember } from '@/api/loginapi'
 export default {
   name: 'member',
   components: {
@@ -57,22 +59,20 @@ export default {
     }
   },
   created () {
-    this.memberList = [{
-      memberName: '青铜',
-      cost: '200',
-      time: '12个月',
-      number: '2'
-    }, {
-      memberName: '白金',
-      cost: '400',
-      time: '12个月',
-      number: '4'
-    }, {
-      memberName: '砖石',
-      cost: '600',
-      time: '12个月',
-      number: '6'
-    }]
+    let data = {
+      page: this.page,
+      pageSize: this.limit
+    }
+    getMember(data).then(res => {
+      console.log(res)
+      this.memberList = [...this.memberList, ...res.data.results]
+      this.loading = false
+      if (res.data.next === null) {
+        this.finished = true
+      } else {
+        this.finished = false
+      }
+    })
   },
   methods: {
     // 获取会员信息

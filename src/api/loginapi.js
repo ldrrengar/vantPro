@@ -181,3 +181,11 @@ export const Transfer = (data) => {
     data
   })
 }
+
+
+export const getMember = (data) => {
+  return request({
+    url: `/api/member/`,
+    method: 'get'
+  })
+}
