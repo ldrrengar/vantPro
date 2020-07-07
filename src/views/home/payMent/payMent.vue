@@ -58,6 +58,7 @@
 <script>
 import { Form, Field, Popup, Button, Dialog, Notify, Uploader, Toast } from 'vant'
 import { submitImage, Transfer } from '@/api/loginapi'
+import { getLocalStorage } from '@/utils/local-storage'
 export default {
   name: 'payMent',
   components: {
@@ -79,13 +80,17 @@ export default {
       payName: '',
       payType: '',
       fileList: [],
-      imageList: []
+      imageList: [],
+      member: false
     }
   },
   created () {
     console.log(this.$route.query)
     this.muchMoney = this.$route.query.total_cost
+    // 任务编号或者会员编号
     this.tasks_id = this.$route.query.tasks_id
+    // 是否会员任务
+    this.member = this.$route.query.member
   },
   methods: {
     handleSumbit () {
@@ -96,7 +101,9 @@ export default {
         payment_account: this.payAccount,
         payment_name: this.payName,
         tasks_id: this.tasks_id,
-        image: this.imageList
+        image: this.imageList,
+        member: this.member,
+        created: getLocalStorage(['username']).username
       }
       Transfer(data).then(res => {
         console.log(res)
@@ -109,9 +116,15 @@ export default {
         title: '提交成功',
         message: '您的转账已经成功提交，请等待工作人员的审核'
       }).then(() => {
-        this.$router.replace({
-          name: 'myTask'
-        })
+        if (this.member === true) {
+          this.$router.replace({
+            name: 'member'
+          })
+        } else {
+          this.$router.replace({
+            name: 'myTask'
+          })
+        }
       })
     },
     afterRead (file) {

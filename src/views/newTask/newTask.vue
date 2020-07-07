@@ -142,7 +142,8 @@ export default {
             name: 'payMent',
             query: {
               tasks_id: res.data.tasks_id,
-              total_cost: this.total_cost
+              total_cost: this.total_cost,
+              member: false
             }
           })
         })

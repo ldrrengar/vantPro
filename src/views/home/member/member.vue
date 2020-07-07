@@ -86,7 +86,15 @@ export default {
       })
         .then(() => {
           // on confirm
-          this.$router.replace({name: 'payMent'})
+          this.$router.replace(
+            {
+              name: 'payMent',
+              query: {
+                    tasks_id: values.member_id,
+                    total_cost: values.place,
+                    member: true
+            }
+            })
         })
         .catch(() => {
           // on cancel

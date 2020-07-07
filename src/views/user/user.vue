@@ -13,7 +13,7 @@
         </van-col>
       </van-row>
       <van-row class="home-top-acc">
-        <div class="acc-lave">账户余额：<span style="color: #c51f1fab;">{{this.userdata.balance}}</span><van-button type="primary" style="float: right;" size="mini" @click="toOrderDetail(task.tasks_id)">提现</van-button></div>
+        <div class="acc-lave">账户余额：<span style="color: #c51f1fab;">{{this.userdata.balance}}</span><van-button type="primary" style="float: right;" size="mini" @click="moneyRecor">提现</van-button></div>
         <van-row class="acc-list">
           <van-col span="6">
             <div style="text-align: center; color: #f1bd01;font-size: 12px;">{{this.userdata.task_reward}}</div>
@@ -92,7 +92,7 @@ export default {
     },
   data () {
     return {
-      userdata: []
+      userdata: [],
     }
   },
   created () {
