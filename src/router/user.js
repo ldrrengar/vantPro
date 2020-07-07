@@ -26,6 +26,17 @@ export default [
     }
   },
   {
+    path: '/getWithdraw',
+    name: 'getWithdraw',
+    meta: {
+      showHeader: true,
+      title: '提现'
+    },
+    components: {
+      default: () => import('@/views/user/withdraw/getWithdraw')
+    }
+  },
+  {
     path: '/fundDetail',
     name: 'fundDetail',
     meta: {
