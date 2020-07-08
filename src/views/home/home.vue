@@ -2,7 +2,7 @@
   <div class="tab_home">
     <van-notice-bar
       left-icon="laba"
-      text="恭喜 花不败 在10分钟前提现100.00元 恭喜 未来在哪里 在20分钟前提现650.00元 恭喜 敢问路在何方 在12分钟前提现8000.00元。"
+      :text="text"
     />
     <van-swipe :autoplay="3000"
                indicator-color="white">
@@ -101,7 +101,7 @@ import {
   NoticeBar
 } from 'vant'
 import scrollFixed from '@/mixin/scroll-fixed'
-import { getBanner, homePage } from '@/api/loginapi'
+import { getBanner, homePage, getNotice } from '@/api/loginapi'
     export default {
       name: 'home',
       mixins: [scrollFixed],
@@ -110,7 +110,8 @@ import { getBanner, homePage } from '@/api/loginapi'
         return {
           bannerList: [],
           isLoading: false,
-          homepage: []
+          homepage: [],
+          text: ''
         }
       },
 
@@ -126,6 +127,17 @@ import { getBanner, homePage } from '@/api/loginapi'
           console.log(11111)
           console.log(res)
           this.homepage = res.data[0].ThreeData
+        })
+
+        getNotice().then(res => {
+          console.log(333)
+          console.log(res)
+          // this.text = res.data.result
+          for (let item of res.data.results) {
+            this.text = this.text + item.notice_content
+          }
+          console.log(this.text)
+          console.log(444)
         })
         // this.shopInfos = [{
         //   banner: [{

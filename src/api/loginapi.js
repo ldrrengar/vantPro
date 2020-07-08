@@ -198,3 +198,10 @@ export const moneyRecord = (data) => {
     data
   })
 }
+
+export const getNotice = (data) => {
+  return request({
+    url: '/api/notice/',
+    method: 'get'
+  })
+}
