@@ -29,6 +29,7 @@
       <van-field
         v-model="price"
         label="出价"
+        type="number"
         placeholder="请输入"
         @keyup.native="priveChange"
         :rules="[{ required: true, message: '请输入单条价格' }]"

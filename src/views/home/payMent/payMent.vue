@@ -94,38 +94,60 @@ export default {
   },
   methods: {
     handleSumbit () {
-      let data = {
-        money: this.muchMoney,
-        cheques_account: this.account,
-        cheques_name: this.accountName,
-        payment_account: this.payAccount,
-        payment_name: this.payName,
-        tasks_id: this.tasks_id,
-        image: this.imageList,
-        member: this.member,
-        created: getLocalStorage(['username']).username
+      console.log(this.imageList)
+      if (this.payName === '') {
+        Notify({ type: 'warning', message: '付款人姓名不可为空' })
+        return
+        // Toast('您的账户余额小于提现金额')
       }
-      Transfer(data).then(res => {
-        console.log(res)
-      })
-      // Dialog.alert({
-      //   title: '提交成功',
-      //   message: '您的转账已经成功提交，请等待工作人员的审核'
-      // })
-      Dialog.alert({
-        title: '提交成功',
-        message: '您的转账已经成功提交，请等待工作人员的审核'
-      }).then(() => {
-        if (this.member === true) {
-          this.$router.replace({
-            name: 'member'
-          })
-        } else {
-          this.$router.replace({
-            name: 'myTask'
-          })
+      if (this.payAccount === '') {
+        Notify({ type: 'warning', message: '付款人账号不可为空' })
+        return
+        // Toast('您的账户余额小于提现金额')
+      }
+      if (this.imageList.length === 0) {
+        console.log(2222)
+        Notify({ type: 'warning', message: '图片不可为空' })
+      } else {
+        let data = {
+          money: this.muchMoney,
+          cheques_account: this.account,
+          cheques_name: this.accountName,
+          payment_account: this.payAccount,
+          payment_name: this.payName,
+          tasks_id: this.tasks_id,
+          image: this.imageList,
+          member: this.member,
+          created: getLocalStorage(['username']).username
         }
-      })
+        Transfer(data).then(res => {
+          console.log(res)
+          Dialog.alert({
+            title: '提交成功',
+            message: '您的转账已经成功提交，请等待工作人员的审核'
+          }).then(() => {
+            if (this.member === true) {
+              this.$router.replace({
+                name: 'member'
+              })
+            } else {
+              this.$router.replace({
+                name: 'myTask'
+              })
+            }
+          })
+          this.muchMoney = ''
+          this.payName = ''
+          this.payAccount = ''
+          this.tasks_id = ''
+          this.payName = ''
+          this.imageList = []
+          this.member = false
+        }).catch(err => {
+          console.log(err)
+          Notify({ type: 'warning', message: '提交失败，请稍后重新提交，或联系工作人员' })
+        })
+      }
     },
     afterRead (file) {
       // const param = new FormData()

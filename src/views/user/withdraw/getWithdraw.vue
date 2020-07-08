@@ -17,11 +17,11 @@
         type="password"
         label="提现密码"
         placeholder="请输入"
-        :rules="[{ required: true, message: '请输入提现密码' }]"
+        :rules="[{ required: true, message: '请输入登陆密码' }]"
       />
       <div style="margin: 16px;">
-        <div style="margin: 5px; color: red;">亲，每天10点到18点可以提现，一天只能提现一次，提现24小时内到账。可到账单查询明细。</div>
-        <van-button block type="info" native-type="submit">
+        <div style="margin: 5px; color: red;">亲，每天10点到18点可以提现，一天只能提现一次，提现24小时内到账。可到提现记录查询明细。</div>
+        <van-button block type="info" :disabled="isFalse" native-type="submit">
           确定提交
         </van-button>
       </div>
@@ -40,6 +40,7 @@
 
 <script>
 import { Form, Field, Picker, Popup, Button, Notify } from 'vant'
+import { moneyRecord } from '@/api/loginapi'
 export default {
   name: 'getWithdraw',
   components: {
@@ -54,6 +55,7 @@ export default {
     return {
       cost: '',
       password: '',
+      isFalse: false,
       columns: [{
         num: 50,
         text: '50'
@@ -91,9 +93,27 @@ export default {
       console.log(this.$route.query.balance)
       if (Number(values.cost) > Number(this.$route.query.balance)) {
         Notify({ type: 'warning', message: '您的账户余额小于提现金额' })
+        return
         // Toast('您的账户余额小于提现金额')
       }
       console.log(values)
+      let data = {
+        money: values.cost,
+        password: values.password
+      }
+      moneyRecord(data).then(res => {
+        Notify({ type: 'success', message: '提交成功，24小时之内到账' })
+        this.$router.push({
+          name: 'withdraw'
+        })
+      }).catch(err => {
+        console.log(err.response.data)
+        if (err.response.data.password) {
+          Notify({ type: 'warning', message: err.response.data.password[0] })
+        } else {
+          Notify({ type: 'warning', message: err.response.data.message })
+        }
+      })
     }
   }
 }

@@ -49,12 +49,15 @@
   </div>
 </template>
 <script>
-import { Form, Field, Picker, Popup, Button, Uploader, Toast, Dialog } from 'vant'
+  import {Form, Field, Picker, Popup, Button, Uploader, Toast, Notify} from 'vant'
 import field from '@/components/field/'
 import fieldGroup from '@/components/field-group/'
 import { pickTask, submitImage } from '@/api/loginapi'
 export default {
   name: 'pickTask',
+  // components: {
+  //   Notify
+  // },
   data () {
     return {
       url: '111',
@@ -95,26 +98,35 @@ export default {
       onInput.remove()
     },
     submitTask () {
-      let data = {
-        tasks_id: this.task.tasks_id,
-        price: this.task.complete_cost,
-        image: this.imageList,
-        state: '0'
-      }
-      pickTask(data).then(res => {
-        console.log(res)
-      })
-      Dialog.alert({
-        title: '提交成功',
-        message: '您的任务已经成功提交，请等待工作人员的审核'
-      }).then(() => {
-        this.$router.replace({
-          name: 'getTask',
-          query: {
-            activeIndex: 0
-          }
+      console.log(111)
+      console.log(this.imageList)
+      if (this.imageList.length === 0) {
+        console.log(2222)
+        Notify({ type: 'warning', message: '图片不可为空' })
+      } else {
+        console.log(333)
+        let data = {
+          tasks_id: this.task.tasks_id,
+          price: this.task.complete_cost,
+          image: this.imageList,
+          state: '0'
+        }
+        pickTask(data).then(res => {
+          console.log(res)
+          Notify({ type: 'success', message: '提交成功，等待工作人员的审核' })
+          this.$router.push({
+            // name: 'task'
+            name: 'getTask'
+          })
+          // Dialog.alert({
+          //   title: '提交成功',
+          //   message: '您的任务已经成功提交，请等待工作人员的审核'
+          // })
+        }).catch(err => {
+          console.log(err.response.data)
+          Notify({ type: 'warning', message: err.response.data[0] })
         })
-      })
+      }
     }
   },
   components: {

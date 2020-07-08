@@ -212,6 +212,11 @@ export default {
         }
         updateZFB(data).then(res => {
           console.log(res)
+          this.changePayAccount = false
+          Notify({ type: 'success', message: '设置成功' })
+        }).catch(err => {
+          console.log(err)
+          Notify({ type: 'warning', message: '设置失败，请稍后重试' })
         })
         this.newAccount = ''
         this.aginAccount = ''
@@ -244,6 +249,15 @@ export default {
         }
         updatePassword(data).then(res => {
           console.log(res)
+          this.changePassWord = false
+          Notify({ type: 'success', message: '修改密码成功' })
+        }).catch(err => {
+          console.log(err.response.data)
+          if (err.response.data.old_password) {
+            Notify({ type: 'warning', message: err.response.data.old_password[0] })
+          } else {
+            Notify({ type: 'warning', message: '设置失败，请稍后重试' })
+          }
         })
         this.loginPassword = ''
         this.newPassword = ''
