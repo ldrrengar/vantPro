@@ -118,6 +118,7 @@ export default {
         this.showPicker = false
         this.costSum()
       },
+      onConfirm1 (value) {},
       priveChange () {
         if (this.num !== 0 && this.price !== '') {
           this.total_cost = this.num * Number(this.price)

@@ -6,7 +6,7 @@ export default [
     name: 'newTask',
     meta: {
       login: true,
-      keepAlive: true,
+      // keepAlive: true,
       showHeader: true,
       title: '发布任务'
     },

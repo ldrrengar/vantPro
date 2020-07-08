@@ -6,7 +6,7 @@ export default [
     name: 'task',
     meta: {
       login: true,
-      keepAlive: true,
+      // keepAlive: true,
       showHeader: false
     },
     components: {

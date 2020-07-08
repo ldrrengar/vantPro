@@ -9,7 +9,7 @@ export default [
       tabbar: Tabbar
     },
     meta: {
-      keepAlive: true,
+      // keepAlive: true,
       showHeader: false
     }
   },
@@ -61,6 +61,17 @@ export default [
     meta: {
       showHeader: true,
       title: '转账提交'
+    }
+  },
+  {
+    path: '/beginnerGuide',
+    name: 'beginnerGuide',
+    components: {
+      default: () => import('@/views/home/beginnerGuide/beginnerGuide')
+    },
+    meta: {
+      showHeader: true,
+      title: '新手指南'
     }
   }
 ]

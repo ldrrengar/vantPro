@@ -31,7 +31,7 @@
         <div>通知公告</div>
       </van-col>
       <van-col span="6">
-        <div class="order_status_icon" style="background: #f53952; color: #ffffff;" @click="$router.push({path: '/user/order/list/2'})">
+        <div class="order_status_icon" style="background: #f53952; color: #ffffff;" @click="$router.push({path: '/beginnerGuide'})">
           <van-icon class="iconfont icon-zhinanzhen"/>
         </div>
         <div>新手指南</div>
