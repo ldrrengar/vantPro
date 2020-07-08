@@ -31,7 +31,7 @@
 
       <div class="clearfix">
         <div class="float-l">
-          <router-link to="/login/register"><span style="color: #f55315;">免费注册</span></router-link>
+          <router-link :to="{path: '/login/register', query: { username: user}}"><span style="color: #f55315;">免费注册</span></router-link>
         </div>
         <div class="float-r">
           <router-link to="/login/forget"><span style="color: #f55315;">忘记密码?</span></router-link>
@@ -70,8 +70,13 @@ export default {
       password: '',
       visiblePass: false,
       isLogining: false,
+      user: '',
       userInfo: {}
     }
+  },
+  created () {
+    this.user = this.$route.query.username
+    console.log(this.user)
   },
   methods: {
     clearText () {

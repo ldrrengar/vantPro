@@ -19,6 +19,7 @@
       <div id="qrCode" class="qrcode"></div>
     </div>
     <div class="qrcode" ref="qrCodeUrl"></div>
+    <!--<div style="padding: 10px; margin-top: 60px; color: red; font-weight: bold;text-align: center;">截屏将图片发送给好友,好友扫码注册后可获取邀请奖励</div>-->
   </div>
 </template>
 
@@ -57,7 +58,7 @@ export default {
         // let width = document.documentElement.clientWidth
         // width = width * 0.32
         let qrcode = new QRCode(this.$refs.qrCodeUrl, {
-          text: 'http://39.108.145.250:8081/#/login/register?username=' + window.localStorage.getItem('username'), // 需要转换为二维码的内容
+          text: 'http://39.108.145.250:8081/#/login?username=' + window.localStorage.getItem('username'), // 需要转换为二维码的内容 39.108.145.250:8081
           width: '120',
           height: '120',
           colorDark: '#000000',
