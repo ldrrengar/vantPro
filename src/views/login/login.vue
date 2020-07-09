@@ -39,7 +39,7 @@
       </div>
 
       <van-button size="large" type="primary" :loading="isLogining" @click="loginSubmit">登录</van-button>
-      <div style="margin: 10px; text-align: center;"><a href="http://39.108.145.250:8081/zanduoduo.apk" style="color: red;">下载安卓版app</a></div>
+      <div style="margin: 10px; text-align: center;"><a href="http://39.108.145.250:8081/zanduodian.apk" style="color: red;">下载安卓版app</a></div>
     </md-field-group>
 
     <div class="text-desc text-center bottom_positon">技术支持: 赞多点</div>

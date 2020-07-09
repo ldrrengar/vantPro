@@ -30,7 +30,7 @@
     :is-error="isErrow"
     placeholder="请再次输入密码" /><div class="red" v-show="isErrow">两次密码输入不一致</div><div class="foget_submit">
     <van-button size="large" type="primary" @click="submitCode">注册</van-button>
-    <div style="margin: 10px; text-align: center;"><a href="http://39.108.145.250:8081/zanduoduo.apk" style="color: red;">下载安卓版app</a></div>
+    <div style="margin: 10px; text-align: center;"><a href="http://39.108.145.250:8081/zanduodian.apk" style="color: red;">下载安卓版app</a></div>
   </div>
 </md-field-group>
 </template>
