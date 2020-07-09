@@ -4,7 +4,7 @@
       <div class="store_avatar">
         <img src="../../assets/images/avatar_default.png" alt="头像" width="55" height="55">
       </div>
-      <div class="store_name">赞多多</div>
+      <div class="store_name">赞多点</div>
     </div>
 
     <md-field-group>
@@ -42,7 +42,7 @@
       <div style="margin: 10px; text-align: center;"><a href="http://39.108.145.250:8081/zanduoduo.apk" style="color: red;">下载安卓版app</a></div>
     </md-field-group>
 
-    <div class="text-desc text-center bottom_positon">技术支持: 赞多多</div>
+    <div class="text-desc text-center bottom_positon">技术支持: 赞多点</div>
 
   </div>
 </template>

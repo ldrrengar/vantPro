@@ -15,7 +15,7 @@
       <!--</div>-->
     <!--</div>-->
     <div class="creat-img" ref="qrCodeUrl" style="margin-top: 44px; text-align: center;">
-      <img src="../../../assets/images/qrcode.png" style="width: 320px;">
+      <img src="../../../assets/images/background.png" style="width: 320px;">
       <div id="qrCode" class="qrcode"></div>
     </div>
     <div class="qrcode" ref="qrCodeUrl"></div>
