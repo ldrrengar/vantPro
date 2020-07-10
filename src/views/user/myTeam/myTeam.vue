@@ -65,7 +65,6 @@ export default {
       pageSize: this.limit
     }
     myTeam(data).then(res => {
-      console.log(res)
       this.teamList = [...this.teamList, ...res.data.results]
       this.loading = false
       if (res.data.next === null) {

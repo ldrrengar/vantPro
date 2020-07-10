@@ -14,8 +14,8 @@
         <!--<div id="qrcode" class="qrcode"></div>-->
       <!--</div>-->
     <!--</div>-->
-    <div class="creat-img" ref="qrCodeUrl" style="margin-top: 44px; text-align: center;">
-      <img src="../../../assets/images/background.png" style="width: 320px;">
+    <div ref="qrCodeUrl" style="margin-top: 44px; text-align: center;">
+      <img src="../../../assets/images/background1.png" style="width: 320px;">
       <div id="qrCode" class="qrcode"></div>
     </div>
     <div class="qrcode" ref="qrCodeUrl"></div>
@@ -59,13 +59,12 @@ export default {
         // width = width * 0.32
         let qrcode = new QRCode(this.$refs.qrCodeUrl, {
           text: 'http://39.108.145.250:8081/#/login?username=' + window.localStorage.getItem('username'), // 需要转换为二维码的内容 39.108.145.250:8081
-          width: '120',
-          height: '120',
+          width: '150',
+          height: '150',
           colorDark: '#000000',
           colorLight: '#ffffff',
           correctLevel: QRCode.CorrectLevel.H
         })
-        console.log(qrcode)
         this.createPicture()
       },
       createPicture () {
@@ -113,7 +112,8 @@ export default {
     }
   }
   .qrcode {
-    margin-top: -195px;
+    margin-top: -173px;
+    padding-left: 5px;
     padding-top: 0.21333333rem;
     padding-bottom: 0.21333333rem;
     display: flex;

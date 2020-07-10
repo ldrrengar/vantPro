@@ -15,7 +15,6 @@ service.interceptors.request.use(
       token = `${window.localStorage.getItem(
         'Authorization'
       ) || ''}`
-      console.log(token)
       if (token !== '') {
  config.headers['Authorization'] = 'JWT ' + `${window.localStorage.getItem(
         'Authorization'
@@ -57,7 +56,6 @@ service.interceptors.response.use(
       return response
     }
   }, error => {
-    console.log('err' + error)// for debug
     // Dialog.alert({
     //     title: '警告',
     //     message: '登录连接超时'

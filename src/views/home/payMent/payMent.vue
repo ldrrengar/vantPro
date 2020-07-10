@@ -85,7 +85,6 @@ export default {
     }
   },
   created () {
-    console.log(this.$route.query)
     this.muchMoney = this.$route.query.total_cost
     // 任务编号或者会员编号
     this.tasks_id = this.$route.query.tasks_id
@@ -94,7 +93,6 @@ export default {
   },
   methods: {
     handleSumbit () {
-      console.log(this.imageList)
       if (this.payName === '') {
         Notify({ type: 'warning', message: '付款人姓名不可为空' })
         return
@@ -106,7 +104,6 @@ export default {
         // Toast('您的账户余额小于提现金额')
       }
       if (this.imageList.length === 0) {
-        console.log(2222)
         Notify({ type: 'warning', message: '图片不可为空' })
       } else {
         let data = {
@@ -121,7 +118,6 @@ export default {
           created: getLocalStorage(['username']).username
         }
         Transfer(data).then(res => {
-          console.log(res)
           Dialog.alert({
             title: '提交成功',
             message: '您的转账已经成功提交，请等待工作人员的审核'
@@ -144,7 +140,6 @@ export default {
           this.imageList = []
           this.member = false
         }).catch(err => {
-          console.log(err)
           Notify({ type: 'warning', message: '提交失败，请稍后重新提交，或联系工作人员' })
         })
       }
@@ -155,8 +150,6 @@ export default {
       // console.log(param)
       const param = new FormData()
       param.append('url', file.file)
-      console.log(param)
-      console.log(222)
       submitImage(param).then(res => {
         this.imageList.push(res.data.id)
       })

@@ -91,7 +91,6 @@ export default {
       pageSize: this.limit
     }
     myTasks(data).then(res => {
-      console.log(res)
       this.taskList = [...this.taskList, ...res.data.results]
       this.loading = false
       if (res.data.next === null) {
@@ -115,7 +114,6 @@ export default {
     },
     // 删除任务
     handleDelete (values) {
-      console.log(values)
       Dialog.confirm({
         title: '温馨提示',
         message: '删除后将无法恢复，确定要执行吗'
@@ -140,7 +138,6 @@ export default {
           total_cost: values.total_cost
         }
       })
-      console.log(values)
     }
   }
 }

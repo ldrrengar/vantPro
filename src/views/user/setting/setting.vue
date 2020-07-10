@@ -192,7 +192,6 @@ export default {
           Notify({ type: 'warning', message: '两次输入的密码不一致，请修改' })
           return
         }
-        console.log((values))
         this.newPayPassword = ''
         this.aginPayPassword = ''
         this.oldPayPassword = ''
@@ -203,7 +202,6 @@ export default {
           Notify({ type: 'warning', message: '两次输入的支付宝账号不一致，请修改' })
           return
         }
-        console.log(values)
         let data = {
           username: getLocalStorage(['username']).username,
           ZFB_account: values.newAccount,
@@ -211,11 +209,9 @@ export default {
           ZFB_name: values.accountName
         }
         updateZFB(data).then(res => {
-          console.log(res)
           this.changePayAccount = false
           Notify({ type: 'success', message: '设置成功' })
         }).catch(err => {
-          console.log(err)
           Notify({ type: 'warning', message: '设置失败，请稍后重试' })
         })
         this.newAccount = ''
@@ -229,7 +225,6 @@ export default {
           Notify({ type: 'warning', message: '两次输入了支付密码不一致，请修改' })
           return
         }
-        console.log(values)
         this.loginPassword = ''
         this.newPayPassword = ''
         this.aginPayPassword = ''
@@ -240,7 +235,6 @@ export default {
           Notify({ type: 'warning', message: '两次输入了支付密码不一致，请修改' })
           return
         }
-        console.log(values)
         let data = {
           username: getLocalStorage(['username']).username,
           old_password: values.loginPassword,
@@ -248,11 +242,9 @@ export default {
           password: values.newPassword
         }
         updatePassword(data).then(res => {
-          console.log(res)
           this.changePassWord = false
           Notify({ type: 'success', message: '修改密码成功' })
         }).catch(err => {
-          console.log(err.response.data)
           if (err.response.data.old_password) {
             Notify({ type: 'warning', message: err.response.data.old_password[0] })
           } else {

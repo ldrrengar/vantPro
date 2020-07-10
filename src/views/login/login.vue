@@ -54,7 +54,7 @@ import fieldGroup from '@/components/field-group/'
 import { authLoginByAccount } from '@/api/loginapi'
 import { setLocalStorage } from '@/utils/local-storage'
 import { emailReg, mobileReg } from '@/utils/validate'
-import { Toast } from 'vant'
+import { Toast, Dialog } from 'vant'
 
 
 export default {
@@ -62,7 +62,8 @@ export default {
   components: {
     [field.name]: field,
     [fieldGroup.name]: fieldGroup,
-    Toast
+    Toast,
+    Dialog
   },
   data () {
     return {
@@ -76,7 +77,6 @@ export default {
   },
   created () {
     this.user = this.$route.query.username
-    console.log(this.user)
   },
   methods: {
     clearText () {
@@ -97,17 +97,20 @@ export default {
       let loginData = this.getLoginData()
       authLoginByAccount(loginData).then(res => {
         // this.userInfo = res.data.data.userInfo
-        setLocalStorage({
-          Authorization: res.data.token,
-          username: this.account
-          // avatar: this.userInfo.avatarUrl,
-          // nickName: this.userInfo.nickName
-        })
-        console.log(res)
+          setLocalStorage({
+            Authorization: res.data.token,
+            username: this.account
+            // avatar: this.userInfo.avatarUrl,
+            // nickName: this.userInfo.nickName
+          })
         this.routerRedirect()
-      // }).catch(error => {
-      //   console.log(error)
-      //   Toast.fail(error)
+      }).catch(error => {
+        Dialog.alert({
+          title: '温馨提示',
+          message: '用户名或者密码错误'
+        }).then(() => {
+          // on close
+        })
       })
     },
 
@@ -118,7 +121,6 @@ export default {
         this.login()
         this.isLogining = false
       } catch (err) {
-        console.log(err.message)
         this.isLogining = false
       }
     },

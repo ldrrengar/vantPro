@@ -74,17 +74,13 @@ export default {
   },
   created () {
     this.task = this.$route.query.task
-    console.log(this.task)
   },
   methods: {
     afterRead (file) {
       const param = new FormData()
       param.append('url', file.file)
-      console.log(param)
-      console.log(222)
       submitImage(param).then(res => {
         this.imageList.push(res.data.id)
-        console.log(this.imageList)
         // this.fileList = [...this.fileList, ...res.data.id]
       })
     },
@@ -98,13 +94,9 @@ export default {
       onInput.remove()
     },
     submitTask () {
-      console.log(111)
-      console.log(this.imageList)
       if (this.imageList.length === 0) {
-        console.log(2222)
         Notify({ type: 'warning', message: '图片不可为空' })
       } else {
-        console.log(333)
         let data = {
           tasks_id: this.task.tasks_id,
           price: this.task.complete_cost,
@@ -112,7 +104,6 @@ export default {
           state: '0'
         }
         pickTask(data).then(res => {
-          console.log(res)
           Notify({ type: 'success', message: '提交成功，等待工作人员的审核' })
           this.$router.push({
             // name: 'task'
@@ -123,7 +114,6 @@ export default {
           //   message: '您的任务已经成功提交，请等待工作人员的审核'
           // })
         }).catch(err => {
-          console.log(err.response.data)
           Notify({ type: 'warning', message: err.response.data[0] })
         })
       }

@@ -61,7 +61,6 @@ export default {
         password: this.password
       }
       resetPassword(data).then(res => {
-        console.log(res)
       })
     },
     getCode () {
@@ -69,7 +68,6 @@ export default {
         mobile: this.mobile
       }
       getCode(data).then(res => {
-        console.log(res)
       })
     },
     countdownend () {

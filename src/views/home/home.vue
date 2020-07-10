@@ -119,26 +119,19 @@ import { getBanner, homePage, getNotice } from '@/api/loginapi'
       created () {
         this.initViews()
         getBanner().then(res => {
-          console.log(2222)
           // console.log(res.data[0].image.replace('127.0.0.1', '39.108.145.250'))
           this.bannerList = res.data
         })
 
         homePage().then(res => {
-          console.log(11111)
-          console.log(res)
           this.homepage = res.data[0].ThreeData
         })
 
         getNotice().then(res => {
-          console.log(333)
-          console.log(res)
           // this.text = res.data.result
           for (let item of res.data.results) {
             this.text = this.text + item.notice_content
           }
-          console.log(this.text)
-          console.log(444)
         })
         // this.shopInfos = [{
         //   banner: [{

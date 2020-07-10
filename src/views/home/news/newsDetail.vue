@@ -20,7 +20,6 @@ export default {
       }
     },
     created () {
-      console.log(this.$route.params.id)
       this.page++
       let data = {
         id: this.$route.params.id

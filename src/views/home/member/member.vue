@@ -64,7 +64,6 @@ export default {
       pageSize: this.limit
     }
     getMember(data).then(res => {
-      console.log(res)
       this.memberList = [...this.memberList, ...res.data.results]
       this.loading = false
       if (res.data.next === null) {

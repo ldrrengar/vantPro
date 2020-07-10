@@ -90,13 +90,11 @@ export default {
       this.showPicker = false
     },
     onSubmit (values) {
-      console.log(this.$route.query.balance)
       if (Number(values.cost) > Number(this.$route.query.balance)) {
         Notify({ type: 'warning', message: '您的账户余额小于提现金额' })
         return
         // Toast('您的账户余额小于提现金额')
       }
-      console.log(values)
       let data = {
         money: values.cost,
         password: values.password
@@ -107,7 +105,6 @@ export default {
           name: 'withdraw'
         })
       }).catch(err => {
-        console.log(err.response.data)
         if (err.response.data.password) {
           Notify({ type: 'warning', message: err.response.data.password[0] })
         } else {

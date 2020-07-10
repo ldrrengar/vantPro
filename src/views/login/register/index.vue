@@ -78,7 +78,6 @@ export default {
         mobile: this.mobile
       }
       getCode(data).then(res => {
-        console.log(res)
         this.counting = true
       })
     },

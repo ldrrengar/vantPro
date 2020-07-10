@@ -109,7 +109,6 @@ export default {
         state: this.activeIndex,
         complete_user: getLocalStorage(['username']).username
       }
-      console.log(getLocalStorage('username'))
       getTasksSelfComplete(data).then(res => {
         // if (this.taskList.length === 0) {
         //   this.taskList = res.data.results

@@ -21,12 +21,10 @@ RouterModel.beforeEach((to, from, next) => {
   )
   if (!Authorization) {
     if (to.meta.login) {
-      console.log('login')
       next({ name: 'login', query: { redirect: to.name } })
       return
     }
   }
-  console.log(to.meta, 'meta')
   // 页面顶部菜单拦截
   let emptyObj = JSON.stringify(to.meta) === '{}'
   let undefinedObj = typeof (to.meta.showHeader) === 'undefined'

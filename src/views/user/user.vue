@@ -99,9 +99,7 @@ export default {
     let data = {
       user: getLocalStorage(['username']).username
     }
-    console.log(getLocalStorage('username'))
     grtUser(data).then(res => {
-      console.log(res)
       this.userdata = res.data[0]
     })
   },
