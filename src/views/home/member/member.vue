@@ -17,7 +17,7 @@
             <van-col span="18">
               <div style="display: flex;">
                 <div style="display: flex; flex-direction: column;margin-left: 8px; justify-content: center;">
-                  <span style="font-size: 14px;">开通期限: {{ member.time}} 年</span>
+                  <span style="font-size: 14px;">开通期限: {{ member.time}} {{ member.time_type}}</span>
                   <span style="font-size: 14px; color: red;">每日可做普通任务: {{ member.common_num }}次</span>
                   <span style="font-size: 14px; color: red;">每日可做会员任务: {{ member.member_num }}次</span>
                 </div>
