@@ -95,6 +95,7 @@ export default {
         onInput.value = this.content
         document.body.appendChild(onInput)
         onInput.select()
+        onInput.setSelectionRange(0, onInput.value.length)
         document.execCommand('Copy')
         Toast.success('复制成功')
         onInput.remove()

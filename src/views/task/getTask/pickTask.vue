@@ -32,8 +32,6 @@
     <div style="margin: 10px;">任务提交</div>
     <div style="margin: 10px; background: #FFFFFF; padding-bottom: 10px;">
       <van-uploader upload-icon="camera_full"
-                     accept="image/png, image/jpeg"
-                     :max-size="3 * 1024 * 1024"
                      :after-read="afterRead"
                       v-model="fileList"
                       multiple
@@ -69,7 +67,8 @@ export default {
       complete_price: '',
       fileList: [],
       task: {},
-      imageList: []
+      imageList: [],
+      loading: false
     }
   },
   created () {
@@ -77,10 +76,17 @@ export default {
   },
   methods: {
     afterRead (file) {
+      this.loading = true
+      file.status = 'uploading'
+      file.message = '上传中...'
       const param = new FormData()
       param.append('url', file.file)
       submitImage(param).then(res => {
-        this.imageList.push(res.data.id)
+        if (res.data.id) {
+          file.status = 'done'
+          this.loading = false
+          this.imageList.push(res.data.id)
+        }
         // this.fileList = [...this.fileList, ...res.data.id]
       })
     },
@@ -89,11 +95,16 @@ export default {
       onInput.value = this.task.url
       document.body.appendChild(onInput)
       onInput.select()
+      onInput.setSelectionRange(0, onInput.value.length)
       document.execCommand('Copy')
       Toast.success('复制成功')
       onInput.remove()
     },
     submitTask () {
+      if (this.loading) {
+        Notify({ type: 'warning', message: '图片未上传完成,请稍后提交' })
+        return
+      }
       if (this.imageList.length === 0) {
         Notify({ type: 'warning', message: '图片不可为空' })
       } else {

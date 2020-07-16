@@ -35,8 +35,6 @@
       <div style="margin: 10px;">转账凭证(请使用支付宝转账)</div>
       <div style="margin: 10px; background: #FFFFFF; padding-bottom: 10px;">
         <van-uploader upload-icon="camera_full"
-                      accept="image/png, image/jpeg"
-                      :max-size="3 * 1024 * 1024"
                       :after-read="afterRead"
                       v-model="fileList"
                       multiple
@@ -81,7 +79,8 @@ export default {
       payType: '',
       fileList: [],
       imageList: [],
-      member: false
+      member: false,
+      loading: false
     }
   },
   created () {
@@ -93,6 +92,10 @@ export default {
   },
   methods: {
     handleSumbit () {
+      if (this.loading) {
+        Notify({ type: 'warning', message: '图片未上传完成,请稍后提交' })
+        return
+      }
       if (this.payName === '') {
         Notify({ type: 'warning', message: '付款人姓名不可为空' })
         return
@@ -148,10 +151,17 @@ export default {
       // const param = new FormData()
       // param.append('url', file.file)
       // console.log(param)
+      this.loading = true
+      file.status = 'uploading'
+      file.message = '上传中...'
       const param = new FormData()
       param.append('url', file.file)
       submitImage(param).then(res => {
-        this.imageList.push(res.data.id)
+        if (res.data.id) {
+          file.status = 'done'
+          this.loading = false
+          this.imageList.push(res.data.id)
+        }
       })
     },
     copy () {
@@ -159,6 +169,7 @@ export default {
       onInput.value = this.account
       document.body.appendChild(onInput)
       onInput.select()
+      onInput.setSelectionRange(0, onInput.value.length)
       document.execCommand('Copy')
       Toast.success('复制成功')
       onInput.remove()
