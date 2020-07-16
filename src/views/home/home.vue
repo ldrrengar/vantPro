@@ -64,19 +64,19 @@
     </van-row>
     <van-row class="taskRow" style="background: #5c85fb; color: #ffffff;">
       <van-col span="6"><van-icon class="iconfont icon-ziyuan" style="font-size: 25px;"/></van-col>
-      <van-col span="18" style="text-align: left;">今日任务数: {{this.homepage.tasks}}</van-col>
+      <van-col span="18" style="text-align: left;">今日任务数: {{this.homepage.tasks_today}}</van-col>
     </van-row>
     <van-row class="taskRow" style="background: #0ed4c5; color: #ffffff;">
       <van-col span="6"><van-icon class="iconfont icon-ziyuan" style="font-size: 25px;"/></van-col>
-      <van-col span="18" style="text-align: left;">今日用户数: {{this.homepage.users}}</van-col>
+      <van-col span="18" style="text-align: left;">今日用户数: {{this.homepage.user_today}}</van-col>
     </van-row>
     <van-row class="taskRow" style="background: #ff655b; color: #ffffff;">
       <van-col span="6"><van-icon class="iconfont icon-ziyuan" style="font-size: 25px;"/></van-col>
-      <van-col span="18"  style="text-align: left;">今日已完成: {{this.homepage.completes}}</van-col>
+      <van-col span="18"  style="text-align: left;">今日已完成: {{this.homepage.complete}}</van-col>
     </van-row>
     <van-row class="taskRow" style="background: #ffa72d; color: #ffffff;">
       <van-col span="6"><van-icon class="iconfont icon-ziyuan" style="font-size: 25px;"/></van-col>
-      <van-col span="18" style="text-align: left;">今日排行榜: 3</van-col>
+      <van-col span="18" style="text-align: left;">今日排行榜: {{this.homepage.goal}}</van-col>
     </van-row>
   </div>
 </template>
@@ -124,7 +124,7 @@ import { getBanner, homePage, getNotice } from '@/api/loginapi'
         })
 
         homePage().then(res => {
-          this.homepage = res.data[0].ThreeData
+          this.homepage = res.data.results[0]
         })
 
         getNotice().then(res => {
