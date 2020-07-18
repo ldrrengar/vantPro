@@ -5,7 +5,8 @@
         <van-col span="6" class="base-logo"></van-col>
         <van-col span="15" class="base-nick">
           <div>{{this.userdata.username}}</div>
-          <div>{{this.userdata.name}}</div>
+          <div style="font-size: 12px;">{{this.userdata.name}}</div>
+          <div style="font-size: 12px;">青铜</div>
         </van-col>
         <van-col span="3" style="margin-top: 15px;text-align: end;">
           <router-link :to="{name: 'setting'}"><van-icon name="set" style="font-size: 20px;" /></router-link>
@@ -156,7 +157,7 @@ export default {
   .home-top-base >.base-nick {
     float: left;
     padding-left: 15px;
-    margin-top: 8px;
+    /*margin-top: 8px;*/
   }
   .base-edit {
     position: absolute;
