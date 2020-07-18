@@ -140,7 +140,7 @@ export default {
           complete_cost: this.price * 0.5
         }
         sumbitTasks(data).then(res => {
-          this.$router.push({
+          this.$router.replace({
             name: 'payMent',
             query: {
               tasks_id: res.data.tasks_id,

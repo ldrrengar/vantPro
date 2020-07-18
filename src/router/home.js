@@ -23,7 +23,8 @@ export default [
     path: '/news',
     name: 'news',
     components: {
-      default: () => import('@/views/home/news/news')
+      default: () => import('@/views/home/news/news'),
+      tabbar: Tabbar
     },
     meta: {
       showHeader: true,
@@ -34,7 +35,8 @@ export default [
     path: '/newsDetail',
     name: 'newsDetail',
     components: {
-      default: () => import('@/views/home/news/newsDetail')
+      default: () => import('@/views/home/news/newsDetail'),
+      tabbar: Tabbar
     },
     meta: {
       showHeader: true,
@@ -45,7 +47,8 @@ export default [
     path: '/member',
     name: 'member',
     components: {
-      default: () => import('@/views/home/member/member')
+      default: () => import('@/views/home/member/member'),
+      tabbar: Tabbar
     },
     meta: {
       showHeader: true,
@@ -56,7 +59,8 @@ export default [
     path: '/payMent',
     name: 'payMent',
     components: {
-      default: () => import('@/views/home/payMent/payMent')
+      default: () => import('@/views/home/payMent/payMent'),
+      tabbar: Tabbar
     },
     meta: {
       showHeader: true,
@@ -67,7 +71,8 @@ export default [
     path: '/beginnerGuide',
     name: 'beginnerGuide',
     components: {
-      default: () => import('@/views/home/beginnerGuide/beginnerGuide')
+      default: () => import('@/views/home/beginnerGuide/beginnerGuide'),
+      tabbar: Tabbar
     },
     meta: {
       showHeader: true,

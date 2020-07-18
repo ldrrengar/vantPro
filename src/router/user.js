@@ -22,7 +22,8 @@ export default [
       title: '提现查询'
     },
     components: {
-      default: () => import('@/views/user/withdraw/withdraw')
+      default: () => import('@/views/user/withdraw/withdraw'),
+      tabbar: Tabbar
     }
   },
   {
@@ -33,7 +34,8 @@ export default [
       title: '提现'
     },
     components: {
-      default: () => import('@/views/user/withdraw/getWithdraw')
+      default: () => import('@/views/user/withdraw/getWithdraw'),
+      tabbar: Tabbar
     }
   },
   {
@@ -44,7 +46,8 @@ export default [
       title: '资金明细'
     },
     components: {
-      default: () => import('@/views/user/fundDetail/fundDetail')
+      default: () => import('@/views/user/fundDetail/fundDetail'),
+      tabbar: Tabbar
     }
   },
   {
@@ -54,7 +57,8 @@ export default [
       showHeader: false
     },
     components: {
-      default: () => import('@/views/user/myInvitation/myInvitation')
+      default: () => import('@/views/user/myInvitation/myInvitation'),
+      tabbar: Tabbar
     }
   },
   {
@@ -65,7 +69,8 @@ export default [
       title: '联系客服'
     },
     components: {
-      default: () => import('@/views/user/conttactCustomer/conttactCustomer')
+      default: () => import('@/views/user/conttactCustomer/conttactCustomer'),
+      tabbar: Tabbar
     }
   },
   {
@@ -76,7 +81,8 @@ export default [
       title: '用户设置'
     },
     components: {
-      default: () => import('@/views/user/setting/setting')
+      default: () => import('@/views/user/setting/setting'),
+      tabbar: Tabbar
     }
   },
   {
@@ -86,7 +92,8 @@ export default [
       showHeader: false
     },
     components: {
-      default: () => import('@/views/user/myTask/myTask')
+      default: () => import('@/views/user/myTask/myTask'),
+      tabbar: Tabbar
     }
   },
   {
@@ -97,7 +104,8 @@ export default [
       title: '我的团队'
     },
     components: {
-      default: () => import('@/views/user/myTeam/myTeam')
+      default: () => import('@/views/user/myTeam/myTeam'),
+      tabbar: Tabbar
     }
   }
 ]

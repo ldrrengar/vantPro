@@ -23,7 +23,8 @@ export default [
       title: '任务中心'
     },
     components: {
-      default: () => import('@/views/task/getTask/getTask')
+      default: () => import('@/views/task/getTask/getTask'),
+      tabbar: Tabbar
     }
   },
   {
@@ -35,7 +36,8 @@ export default [
       title: '领取'
     },
     components: {
-      default: () => import('@/views/task/getTask/pickTask')
+      default: () => import('@/views/task/getTask/pickTask'),
+      tabbar: Tabbar
     }
   }
 ]

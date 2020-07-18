@@ -1,4 +1,4 @@
-// const Tabbar = () => import('@/components/Tabbar/')
+const Tabbar = () => import('@/components/Tabbar/')
 
 export default [
   {
@@ -11,8 +11,8 @@ export default [
       title: '发布任务'
     },
     components: {
-      default: () => import('@/views/newTask/newTask')
-      // tabbar: Tabbar
+      default: () => import('@/views/newTask/newTask'),
+      tabbar: Tabbar
     }
   }
 ]
