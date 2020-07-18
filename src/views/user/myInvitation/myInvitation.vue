@@ -58,7 +58,7 @@ export default {
         // let width = document.documentElement.clientWidth
         // width = width * 0.32
         let qrcode = new QRCode(this.$refs.qrCodeUrl, {
-          text: 'http://39.108.145.250:8081/#/login?username=' + window.localStorage.getItem('username'), // 需要转换为二维码的内容 39.108.145.250:8081
+          text: 'http://39.108.145.250:8081/#/login/register?username=' + window.localStorage.getItem('username'), // 需要转换为二维码的内容 39.108.145.250:8081
           width: '150',
           height: '150',
           colorDark: '#000000',

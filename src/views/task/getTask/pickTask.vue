@@ -116,7 +116,7 @@ export default {
         }
         pickTask(data).then(res => {
           Notify({ type: 'success', message: '提交成功，等待工作人员的审核' })
-          this.$router.push({
+          this.$router.replace({
             // name: 'task'
             name: 'getTask'
           })

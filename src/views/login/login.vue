@@ -39,7 +39,8 @@
       </div>
 
       <van-button size="large" type="primary" :loading="isLogining" @click="loginSubmit">登录</van-button>
-      <div style="margin: 10px; text-align: center;"><a href="http://39.108.145.250:8081/zanduodian.apk" style="color: red;">下载安卓版app</a></div>
+      <van-button size="large" type="primary"  style="margin-top: 10px;"><a href="http://39.108.145.250:8081/zanduodian.apk" style="color: #ffffff;">请下载安卓app</a></van-button>
+      <div style="margin: 10px; text-align: center; color: red;">苹果手机用户请将此页面保存书签</div>
     </md-field-group>
 
     <div class="text-desc text-center bottom_positon">技术支持: 赞多点</div>
