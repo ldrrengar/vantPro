@@ -31,15 +31,15 @@
 
       <div class="clearfix">
         <div class="float-l">
-          <router-link :to="{path: '/login/register', query: { username: user}}"><span style="color: #f55315;">免费注册</span></router-link>
+          <router-link :to="{path: '/login/register', query: { username: user}}"><span style="color: #1989fa;">免费注册</span></router-link>
         </div>
         <div class="float-r">
-          <router-link to="/login/forget"><span style="color: #f55315;">忘记密码?</span></router-link>
+          <router-link to="/login/forget"><span style="color: #1989fa;">忘记密码?</span></router-link>
         </div>
       </div>
 
       <van-button size="large" type="primary" :loading="isLogining" @click="loginSubmit">登录</van-button>
-      <van-button size="large" type="primary"  style="margin-top: 10px;"><a href="http://39.108.145.250:8081/zanduodian.apk" style="color: #ffffff;">请下载安卓app</a></van-button>
+      <div style="margin: 10px; text-align: center;"><a href="http://39.108.145.250:8081/zanduodian.apk" style="color: #1989fa; text-decoration:underline;">下载安卓app</a></div>
       <div style="margin: 10px; text-align: center; color: red;">苹果手机用户请将此页面保存书签</div>
     </md-field-group>
 
