@@ -6,7 +6,7 @@
         <van-col span="15" class="base-nick">
           <div>{{this.userdata.username}}</div>
           <div style="font-size: 12px;">{{this.userdata.name}}</div>
-          <div style="font-size: 12px;">会员等级：{{this.userdata.member_level}}  到期日：{{this.userdata.member_limit}}</div>
+          <div style="font-size: 12px;">会员等级：{{this.userdata.member_level}} {{this.userdata.member_limit}}</div>
         </van-col>
         <van-col span="3" style="margin-top: 15px;text-align: end;">
           <router-link :to="{name: 'setting'}"><van-icon name="set" style="font-size: 20px;" /></router-link>
