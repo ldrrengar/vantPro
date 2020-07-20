@@ -66,6 +66,9 @@
         <van-cell icon="shoucang" title="我的任务" to="/myTask" isLink/>
         <van-cell icon="dingwei" title="开通会员" to="/member" isLink/>
         <van-cell icon="kefu" title="联系客服" to="/conttactCustomer" isLink/>
+        <van-cell icon="shoucang" isLink>
+          <a href="http://39.108.145.250:8081/zanduodian.apk" style="color: #323233;" class="van-cell__title">下载安卓版app</a>
+        </van-cell>
       </van-cell-group>
     </div>
   </div>
