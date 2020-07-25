@@ -75,24 +75,24 @@ export default {
     })
   },
   methods: {
-    // getTeamList () {
-    //   this.loading = false
-    //   this.finished = true
-    //   this.page++
-    //   let data = {
-    //     page: this.page,
-    //     pageSize: this.limit
-    //   }
-    //   myTeam(data).then(res => {
-    //     this.teamList = [...this.teamList, ...res.data.results]
-    //     this.loading = false
-    //     if (res.next === null) {
-    //       this.finished = true
-    //     } else {
-    //       this.finished = false
-    //     }
-    //   })
-    // }
+    getTeamList () {
+      this.loading = false
+      this.finished = true
+      this.page++
+      let data = {
+        page: this.page,
+        pageSize: this.limit
+      }
+      myTeam(data).then(res => {
+        this.teamList = [...this.teamList, ...res.data.results]
+        this.loading = false
+        if (res.next === null) {
+          this.finished = true
+        } else {
+          this.finished = false
+        }
+      })
+    }
   }
 }
 </script>
