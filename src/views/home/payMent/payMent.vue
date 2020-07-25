@@ -70,8 +70,8 @@ export default {
   },
   data () {
     return {
-      account: '18179768000',
-      accountName: '邱斌',
+      account: '16626314131',
+      accountName: '谭明辉',
       muchMoney: '',
       payAccount: '',
       tasks_id: '',
