@@ -10,7 +10,8 @@
                       :key="index">
 <!--        <div class="bg" :style="{background-image: url(' + banner.image + ') no-repeat}"></div>-->
 <!--        <div class="bg" :style="{ 'background-image': 'url(' + banner.image.replace('127.0.0.1', '39.108.145.250') + ')'}">-->
-        <div class="bg" :style="{ 'background-image': 'url(' + banner.image.replace('39.108.145.250', '39.108.145.250:8080') + ')'}">
+<!--        <div class="bg" :style="{ 'background-image': 'url(' + banner.image.replace('39.108.145.250', '39.108.145.250:8080') + ')'}">-->
+        <div class="bg" :style="{ 'background-image': 'url(' + banner.image.replace('120.24.25.65', '120.24.25.65:8080') + ')'}">
         </div>
 <!--        <img :src="banner.image"-->
 <!--             style="height:230px">-->
